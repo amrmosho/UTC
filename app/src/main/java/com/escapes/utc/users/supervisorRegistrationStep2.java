@@ -61,7 +61,7 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
         username = getIntent().getExtras().getString("username");
         group = getIntent().getExtras().getString("username");
 
-
+/////
 
 
         Button bt_save = (Button) findViewById(R.id.bt_supervisor_save);
