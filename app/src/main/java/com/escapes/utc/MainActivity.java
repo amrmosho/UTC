@@ -22,7 +22,7 @@ String TAG="";
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+////////////////////////
 
     @Override
     protected void onStart() {
