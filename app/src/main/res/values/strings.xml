@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UTC</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_usersres">usersres</string>
+    <string name="title_activity_student_registration">student Registration</string>
+    <string name="send">send</string>
+    <string name="title_activity_student_registration_step2">studentRegistrationStep2</string>
+    <string name="Save">Save</string>
+    <string name="title_activity_supervisor_registration">supervisorRegistration</string>
+    <string name="title_activity_supervisor_registration_step2">supervisorRegistrationStep2</string>
+    <string name="title_activity_lgoin">lgoin</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_activity_test">test</string>
+    <string name="title_activity_test2">test2</string>
+
+</resources>
