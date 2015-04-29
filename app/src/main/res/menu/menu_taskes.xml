@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.escapes.utc.users.student.taskes">
+    <item android:id="@+id/action_settings1" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+
+    <item android:id="@+id/action_settings2" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/action_settings3" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/action_settings4" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="ifRoom|withText" />
+
+</menu>

@@ -136,15 +136,17 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
             return null;
 
 
-
-
         }
+
+
 
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 4;
         }
+
+
 
         @Override
         public CharSequence getPageTitle(int position) {
@@ -168,6 +170,9 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
 
 
 
+    /**
+     * TabListener for main Tske
+     */
 
 
     public static class mainFragment extends Fragment {
@@ -199,6 +204,9 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
 
 
 
+    /**
+     * TabListener for todoList
+     */
 
     public static class todolistFragment extends Fragment {
 
@@ -217,7 +225,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         }
 
 
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -231,11 +238,9 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
 
 
 
-
-
-
-
-
+    /**
+     * TabListener for messages
+     */
 
     public static class messagesFragment extends Fragment {
 
@@ -255,7 +260,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         }
 
 
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -268,9 +272,9 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
 
 
 
-
-
-
+    /**
+     * TabListener for meeting
+     */
 
     public static class meetingsFragment extends Fragment {
 
@@ -290,8 +294,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         }
 
 
-
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -299,9 +301,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
             return rootView;
         }
     }
-
-
-
 
 
 }
