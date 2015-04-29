@@ -41,14 +41,6 @@ public class lgoin extends ActionBarActivity {
 
 
 
-
-
-
-
-
-
-
-
         bt_login.setOnClickListener(
                 new Button.OnClickListener() {
                     @Override
@@ -99,8 +91,7 @@ public class lgoin extends ActionBarActivity {
 
 
 
-user.data=r;
-
+user.addUserData(r);
 
         if (r.trim().equalsIgnoreCase("-1")) {
             Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
@@ -146,19 +137,13 @@ user.data=r;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_lgoin, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

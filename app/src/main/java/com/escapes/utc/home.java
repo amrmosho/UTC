@@ -18,7 +18,26 @@ public class home extends ActionBarActivity {
 
         TextView in= (TextView)findViewById(R.id.info);
 
-        in.setText(user.data);
+        /*
+
+
+          [id] => 16
+    [title] => amrmosho
+    [email] => empcland@gmail.com
+    [Image] => 5514a1bfc8c0a.jpg
+    [age] => 30
+    [group] => 25
+    [username] => amrmosho
+    [password] => f06c22dbb3ce903ab93d9316517a26ef
+    [phonenumber] =>
+    [phoneid] =>
+    [per] => 1
+    [logintype] => student
+         */
+
+
+
+        in.setText(user.data.get("id"));
 
     }
 

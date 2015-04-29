@@ -15,5 +15,15 @@
     <string name="title_activity_home">home</string>
     <string name="title_activity_test">test</string>
     <string name="title_activity_test2">test2</string>
+    <string name="title_activity_tske">tske</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_task">task</string>
+    <string name="title_activity_mytask">MytaskActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_task_main">task_main</string>
+    <string name="title_activity_student_taskes">studentTaskes</string>
+    <string name="title_activity_super_taskes">super_taskes</string>
 
 </resources>

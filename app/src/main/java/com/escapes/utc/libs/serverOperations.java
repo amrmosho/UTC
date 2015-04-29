@@ -28,8 +28,8 @@ public class serverOperations {
 
 
 
-
         HttpClient httpclient = new DefaultHttpClient();
+
 
 
 
@@ -44,12 +44,15 @@ public class serverOperations {
 
 
             String st = EntityUtils.toString(response.getEntity());
+
             r = st;
 
 
 
         } catch (Exception e) {
             r=e.toString();
+
+
         }
 
 
