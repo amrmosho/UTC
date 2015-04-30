@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,6 +62,11 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
                 actionBar.setSelectedNavigationItem(position);
             }
         });
+
+
+
+        TextView t= (TextView) findViewById(R.id.textView18);
+        t.setText("f1111111111111111111111111111111111111111111111111111111111111111111111111111111");
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -139,13 +143,11 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         }
 
 
-
         @Override
         public int getCount() {
             // Show 3 total pages.
             return 4;
         }
-
 
 
         @Override
@@ -164,10 +166,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
             return null;
         }
     }
-
-
-
-
 
 
     /**
@@ -194,14 +192,15 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_student_taskes_report, container, false);
+
+
+
+
+
             return rootView;
         }
     }
-
-
-
-
 
 
     /**
@@ -228,14 +227,12 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+
             View rootView = inflater.inflate(R.layout.fragment_student_task_todolist, container, false);
             return rootView;
         }
     }
-
-
-
-
 
 
     /**
@@ -267,9 +264,6 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
             return rootView;
         }
     }
-
-
-
 
 
     /**

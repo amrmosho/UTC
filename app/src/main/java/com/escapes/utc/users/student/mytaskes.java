@@ -1,27 +1,22 @@
 package com.escapes.utc.users.student;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.support.v4.app.ListFragment;
 
 import com.escapes.utc.R;
-
-import java.util.Locale;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -51,21 +46,35 @@ public class mytaskes extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+
+
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
 
 
-        switch (position) {
+/*
 
+
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        LinkListFragment llf = new LinkListFragment();
+        ft.replace(R.id.listFragment, llf);
+        ft.commit();
+- See more at: http://www.survivingwithandroid.com/2013/04/android-fragment-transaction.html#sthash.73Ac5J7w.dpuf
+
+ */
+
+        switch (position) {
 
             case 0:
 
-
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, mainFragment.newInstance(position + 1))
-                        .commit();
+                        .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
 
                 break;
 
@@ -73,17 +82,26 @@ public class mytaskes extends ActionBarActivity
 
 
                 fragmentManager.beginTransaction()
+                        .replace(R.id.container,  todolistFragment.newInstance(position + 1))
+                        .commit();
+
+                break;
+
+            case 2:
+
+
+                fragmentManager.beginTransaction()
                         .replace(R.id.container, todolistFragment.newInstance(position + 1))
                         .commit();
 
                 break;
-            case 2:
+            case 3:
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, studentTaskes.messagesFragment.newInstance(position + 1))
                         .commit();
                 break;
-            case 3:
+            case 4:
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, meetingsFragment.newInstance(position + 1))
@@ -284,9 +302,64 @@ public class mytaskes extends ActionBarActivity
      */
 
 
-    public static class mainFragment extends Fragment {
+    public static class reportFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public static mainFragment newInstance(int sectionNumber) {
+            mainFragment fragment = new mainFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public reportFragment() {
+        }
+
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_student_taskes_report, container, false);
+
+
+
+            TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_tab);
+            th.setup();
+            TabHost.TabSpec tc = th.newTabSpec("Taske");
+            tc.setIndicator("tabtext");
+            tc.setContent(R.id.student_taske_tab_tsk);
+            th.addTab(tc);
+
+
+            tc = th.newTabSpec("tab2");
+            tc.setIndicator("Report");
+            tc.setContent(R.id.student_taske_tab_rqs);
+            th.addTab(tc);
+
+
+            tc = th.newTabSpec("tab3");
+            tc.setIndicator("Markes");
+            tc.setContent(R.id.student_taske_tab_mark);
+            th.addTab(tc);
+
+            return rootView;
+        }
+    }
+
+
+
+    /**
+     * TabListener for main Tske
+     */
+
+
+    public static class mainFragment extends ListFragment
+    {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
 
         public static mainFragment newInstance(int sectionNumber) {
             mainFragment fragment = new mainFragment();
@@ -300,16 +373,30 @@ public class mytaskes extends ActionBarActivity
         }
 
 
+
+
+        String[] numbers_text = new String[] { "one", "two", "three", "four",
+                "five", "six", "seven", "eight", "nine", "ten", "eleven",
+                "twelve", "thirteen", "fourteen", "fifteen" };
+        String[] numbers_digits = new String[] { "1", "2", "3", "4", "5", "6", "7",
+                "8", "9", "10", "11", "12", "13", "14", "15" };
+
+        @Override
+        public void onListItemClick(ListView l, View v, int position, long id) {
+         //   new CustomToast(getActivity(), numbers_digits[(int) id]);
+        }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes, container, false);
-            return rootView;
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    inflater.getContext(), android.R.layout.simple_list_item_1,
+                    numbers_text);
+
+            setListAdapter(adapter);
+            return super.onCreateView(inflater, container, savedInstanceState);
         }
     }
-
-
-
 
 
 }

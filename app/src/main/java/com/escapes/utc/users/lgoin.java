@@ -89,7 +89,7 @@ public class lgoin extends ActionBarActivity {
 
         String r = serverOperations.sendToServer(nameValuePairs);
 
-
+Log.d("new2222",r);
 
 user.addUserData(r);
 

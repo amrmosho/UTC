@@ -30,22 +30,46 @@
                 android:layout_height="fill_parent">
 
                 <LinearLayout
-                    android:id="@+id/linearLayout6"
+                    android:id="@+id/student_taske_tab_tsk"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="task"
+                        android:id="@+id/textView18" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout7"
+                    android:id="@+id/student_taske_tab_rqs"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="rqs"
+                        android:id="@+id/textView19" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout8"
+                    android:id="@+id/student_taske_tab_mark"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="mark"
+                        android:id="@+id/textView20" />
+                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

@@ -1,36 +1,117 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context="com.escapes.utc.home">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.escapes.utc.home"
+    android:padding="0dp">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/bg_home"
+        android:layout_gravity="center"
+        android:maxWidth="100dp"
+        android:minWidth="100dp"
+        android:minHeight="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/studen_img"
+        android:src="@drawable/abc_ic_menu_paste_mtrl_am_alpha"
+        android:layout_gravity="center"
+        android:maxWidth="90dp"
+        android:minWidth="90dp"
+        android:minHeight="90dp"
+        android:maxHeight="90dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="45dp"
+        android:layout_above="@+id/myg"
+        android:layout_alignRight="@+id/myg"
+        android:layout_alignEnd="@+id/myg"
+        android:layout_marginBottom="30dp" />
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/info" />
+        android:id="@+id/info"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
+        android:textStyle="italic"
+        android:textSize="10dp"
+        android:layout_alignBottom="@+id/studen_img"
+        android:layout_toLeftOf="@+id/studen_img"
+        android:layout_toStartOf="@+id/studen_img" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_below="@+id/info"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="38dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="64dp" />
+        android:rowCount="2"
+        android:columnCount="3"
+        android:id="@+id/myg"
+        android:layout_gravity="bottom"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_below="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp" />
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton"
+            android:src="@drawable/bt_icone_taskes"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton2"
+            android:src="@drawable/bt_icone_reports"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton3"
+            android:src="@drawable/bt_icone_todo"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton4"
+            android:src="@drawable/bt_icone_messages"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton6"
+            android:src="@drawable/bt_icone_meetings"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:id="@+id/imageButton5"
+            android:src="@drawable/bt_icone_exit"
+            android:backgroundTintMode="screen"
+            android:scaleType="fitCenter" />
+
+    </GridLayout>
 
 </RelativeLayout>
