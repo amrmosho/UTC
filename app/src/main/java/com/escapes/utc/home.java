@@ -79,7 +79,6 @@ public class home extends ActionBarActivity {
 
     public void taskesButtonClick(View view) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
         nameValuePairs.add(new BasicNameValuePair("group", user.data.get("group")));
         nameValuePairs.add(new BasicNameValuePair("logintype",user.data.get("logintype")));
         nameValuePairs.add(new BasicNameValuePair("status", "tasks"));

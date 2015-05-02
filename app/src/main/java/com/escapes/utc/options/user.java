@@ -1,6 +1,14 @@
 package com.escapes.utc.options;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.escapes.utc.libs.serverOperations;
+import com.escapes.utc.users.student.mytaskes;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +22,15 @@ public class user {
 
 
     public static HashMap<String, String> data = new HashMap<String, String>();
-    // public static HashMap<String, String>[] taskes[] = new HashMap<String, String>()[];
 
     public static List<Map<String, String>> taskesList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> todList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> messagesList = new ArrayList<Map<String, String>>();
+
+    public static List<Map<String, String>> meetingsList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> todoList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
+
 
     public static void addUserData(String Data) {
         String[] ds = Data.split(";");
@@ -41,9 +55,12 @@ public class user {
 
     }
 
-    public static void fillTaskesData(String Data) {
+
+    public static List<Map<String, String>> fillListData(String Data) {
         Log.d("mytest", Data);
-//    3sdfsdfsdfsf;progress,50;@id,9;users_group_id,25;supervisor_id,2;title,java taske;dec,77777;created,2015-04-28 00:00:00;ended,2015-04-30 00:00:00;image,5536669580890.jpg;video,https://www.youtube.com/watch?v=3u1fu6f8Hto;file,;status,3;requests,important parts of Gradle to get your build up and running
+
+        List<Map<String, String>> r = new ArrayList<Map<String, String>>();
+
 
         String[] rows = Data.split("@");
         int rownum = 0;
@@ -60,9 +77,49 @@ public class user {
                 }
                 tmap.put(thisdata[0], myv);
             }
-            taskesList.add(rownum, tmap);
+            r.add(rownum, tmap);
             rownum++;
 
+        }
+        return r;
+    }
+
+
+    public static void fillTaskesData(String Data) {
+
+        taskesList = fillListData(Data);
+
+    }
+
+    public static void fillListData(String Data, String Type) {
+        switch (Type) {
+            case "task_messages"
+                    :
+
+                messagesList = fillListData(Data);
+
+
+                break;
+
+            case "task_meetings"
+                    :
+                meetingsList = fillListData(Data);
+
+                break;
+
+            case "task_todolist"
+                    :
+                todoList = fillListData(Data);
+                break;
+            case "task_requests"
+                    :
+                reportsList = fillListData(Data);
+                break;
+
+            default:
+                taskesList = fillListData(Data);
+
+                break;
         }
 
     }
@@ -90,6 +147,7 @@ public class user {
         return tmap;
 
     }
+
 
     public static String getStatus(String id) {
         String r = "";
@@ -124,5 +182,74 @@ public class user {
         return r;
     }
 
+
+    public static String getData(String Type, String Where) {
+
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("Where", Where));
+
+        nameValuePairs.add(new BasicNameValuePair("table", Type));
+        nameValuePairs.add(new BasicNameValuePair("status", "fillData"));
+        String r = serverOperations.sendToServer(nameValuePairs);
+        if (!r.trim().equalsIgnoreCase("-1")) {
+            fillListData(r, Type);
+        }
+        return r.trim();
+    }
+
+
+
+    public static String set_insert(String table, Map<String, String> setdata) {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        for (String k : setdata.keySet()) {
+            nameValuePairs.add(new BasicNameValuePair(k, setdata.get(k)));
+        }
+        nameValuePairs.add(new BasicNameValuePair("table", table));
+        nameValuePairs.add(new BasicNameValuePair("status", "insert"));
+        String r = serverOperations.sendToServer(nameValuePairs);
+        return r.trim();
+    }
+
+    public static String set_update(String table, Map<String, String> setdata, String where ) {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        for (String k : setdata.keySet()) {
+            nameValuePairs.add(new BasicNameValuePair(k, setdata.get(k)));
+        }
+        nameValuePairs.add(new BasicNameValuePair("where", where));
+        nameValuePairs.add(new BasicNameValuePair("table", table));
+        nameValuePairs.add(new BasicNameValuePair("status", "edit"));
+        String r = serverOperations.sendToServer(nameValuePairs);
+        return r.trim();
+    }
+
+
+    public static String set_delete(String table, String where ) {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("where", where));
+        nameValuePairs.add(new BasicNameValuePair("table", table));
+        nameValuePairs.add(new BasicNameValuePair("status", "delete"));
+        String r = serverOperations.sendToServer(nameValuePairs);
+        return r.trim();
+    }
+    /*
+
+
+      case "insert":
+        $db->set_insert( $_POST['table'], $_POST);
+
+
+
+
+        break;
+           case "edit":
+        $db->set_insert( $_POST['table'], $_POST ,$_POST['where'] );
+
+
+
+
+        break;
+          case "delete":
+        $db->set_delete( $_POST['table'],$_POST['where'] );
+     */
 
 }

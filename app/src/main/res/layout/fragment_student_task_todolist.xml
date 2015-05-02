@@ -5,11 +5,37 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add"
+            android:id="@+id/t_addbt"
+            android:onClick="t_addbt_click"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="edit"
+            android:id="@+id/t_editbt" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delelet"
+            android:id="@+id/t_delbt" />
+    </LinearLayout>
+
     <TabHost
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="446dp"
         android:id="@+id/student_taske_todo"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal|top"
         style="@style/tabs">
 
         <LinearLayout
@@ -152,7 +178,13 @@
                     android:id="@+id/student_taske_tab_todo"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/todolist" />
+                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>

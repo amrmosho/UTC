@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
 
+import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.config;
 
 
@@ -15,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by eScapes on 2/17/15.
@@ -112,6 +115,21 @@ public class uitls {
                         sourceBitmap.getHeight()),
                 new Rect(0, 0, targetWidth, targetHeight), null);
         return targetBitmap;
+    }
+
+
+    public ArrayList<ListItem> getListData(List<Map<String, String>> taskesList) {
+        ArrayList<ListItem> listMockData = new ArrayList<ListItem>();
+        for (Map<String, String> m : taskesList) {
+            ListItem newsData = new ListItem();
+            newsData.setHeadline(m.get("title"));
+            newsData.setListDes(m.get("dec"));
+            newsData.setId(m.get("id"));
+            //newsData.setUrl(m.get("image"));
+            //newsData.setDate(m.get("date"));
+            listMockData.add(newsData);
+        }
+        return listMockData;
     }
 
 }
