@@ -106,6 +106,28 @@
         <item name="android:padding">30dp</item>
     </style>
 
+    <style name="tabs">
+        <item name="android:padding">5dp</item>
+
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:background">#eee</item>
+        </style>
+    <style name="datalist">
+
+        <item name="android:layout_margin">30dp</item>
+        <item name="android:background">#eee</item>
+3
+    </style>
+    <style name="label">
+
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="labelData">
+
+        <item name="android:textStyle">bold</item>
+    </style>
     <!-- You just keep adding periods to add to additional styles -->
     <style name="TextView1.TextView2.TextView3">
         <item name="android:layout_marginTop">15dp</item>

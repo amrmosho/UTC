@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+   style="@style/datalist"
+    android:clickable="false">
 
 
 
     <ImageView
         android:id="@+id/flag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:contentDescription="@string/buy_1"
-        android:paddingBottom="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+
+       android:src="@drawable/taskeico"
+        android:maxHeight="100dp"
+        android:maxWidth="100dp"
+        android:minHeight="100dp" />
      
         
 
@@ -27,18 +31,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="txt" />
+        android:text="txt"
+        android:layout_marginTop="15dp"
+        style="@style/label" />
 
 
         />
      
             
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="id"
+            android:id="@+id/myid" />
+
+        <TextView
         android:id="@+id/cur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="des" />
+        android:text="des"
+        android:layout_marginTop="5dp" />
         android:textSize="10dp" />
 
 </LinearLayout>

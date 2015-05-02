@@ -79,15 +79,11 @@ public class home extends ActionBarActivity {
 
     public void taskesButtonClick(View view) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        //05-02 00:35:19.215  22030-22030/com.escapes.utc D/mytest﹕ id,16;title,amrmosho;email,empcland@gmail.com;Image,5514a1bfc8c0a.jpg;age,30;group,25;username,amrmosho;password,f06c22dbb3ce903ab93d9316517a26ef;phonenumber,;phoneid,;per,1;enabled,1;logintype,student;
 
         nameValuePairs.add(new BasicNameValuePair("group", user.data.get("group")));
         nameValuePairs.add(new BasicNameValuePair("logintype",user.data.get("logintype")));
         nameValuePairs.add(new BasicNameValuePair("status", "tasks"));
-
         String r = serverOperations.sendToServer(nameValuePairs);
-
-
         if (r.trim().equalsIgnoreCase("-1")) {
             Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
             t.show();
@@ -97,11 +93,5 @@ public class home extends ActionBarActivity {
             Intent i = new Intent(home.this, mytaskes.class);
             startActivity(i);
         }
-
-
-
-
     }
-
-
 }

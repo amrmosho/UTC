@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,17 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TabHost;
-import android.widget.ArrayAdapter;
 import android.support.v4.app.ListFragment;
+import android.widget.TextView;
 
 import com.escapes.utc.R;
+import com.escapes.utc.options.CustomListAdapter;
+import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class mytaskes extends ActionBarActivity
@@ -54,27 +54,10 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
-
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-
-
-/*
-
-
-
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-
-        LinkListFragment llf = new LinkListFragment();
-        ft.replace(R.id.listFragment, llf);
-        ft.commit();
-- See more at: http://www.survivingwithandroid.com/2013/04/android-fragment-transaction.html#sthash.73Ac5J7w.dpuf
-
- */
 
         switch (position) {
 
@@ -89,7 +72,7 @@ public class mytaskes extends ActionBarActivity
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container,  todolistFragment.newInstance(position + 1))
+                        .replace(R.id.container, todolistFragment.newInstance(position + 1))
                         .commit();
 
                 break;
@@ -117,14 +100,9 @@ public class mytaskes extends ActionBarActivity
         }
 
 
-
-
     }
 
     public void onSectionAttached(int number) {
-
-
-
 
 
         switch (number) {
@@ -135,14 +113,12 @@ public class mytaskes extends ActionBarActivity
                 mTitle = "Todolist";
                 break;
             case 2:
-                mTitle ="Messages";
+                mTitle = "Messages";
                 break;
             case 3:
                 mTitle = "Meetings";
                 break;
         }
-
-
 
 
     }
@@ -184,18 +160,6 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * TabListener for todoList
      */
@@ -221,18 +185,46 @@ public class mytaskes extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_student_task_todolist, container, false);
+            String tid = "9";
 
-          //  TabHost th=(TabHost) findViewById(R.id.student_taske_tab);
+            Map m = user.getTaskByid(tid);
+
+
+            TextView todo_tTitle = (TextView) rootView.findViewById(R.id.todo_tTitle);
+
+            TextView todo_tStatus = (TextView) rootView.findViewById(R.id.todo_tStatus);
+
+            TextView todo_tStartData = (TextView) rootView.findViewById(R.id.todo_tStartData);
+
+            TextView todo_tEndData = (TextView) rootView.findViewById(R.id.todo_tEndData);
+
+            TextView todo_tDes = (TextView) rootView.findViewById(R.id.todo_tDes);
+
+
+            todo_tTitle.setText((String) m.get("title"));
+            todo_tStatus.setText(user.getStatus((String) m.get("status")));
+            todo_tStartData.setText((String) m.get("created"));
+            todo_tEndData.setText((String) m.get("ended"));
+            todo_tDes.setText((String) m.get("dec")+"\n"+(String) m.get("requests"));
+
+
+            TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_todo);
+            th.setup();
+            TabHost.TabSpec tc = th.newTabSpec("Taske");
+            tc.setIndicator("Taske");
+            tc.setContent(R.id.student_taske_tab_todotsk);
+            th.addTab(tc);
+
+
+            tc = th.newTabSpec("tab3");
+            tc.setIndicator("TodoList");
+            tc.setContent(R.id.student_taske_tab_todo);
+            th.addTab(tc);
+
 
             return rootView;
         }
     }
-
-
-
-
-
-
 
 
     /**
@@ -266,11 +258,6 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
-
-
-
-
     /**
      * TabListener for meeting
      */
@@ -302,13 +289,9 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
-
     /**
      * TabListener for main Tske
      */
-
-
     public static class reportFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
@@ -329,7 +312,6 @@ public class mytaskes extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_student_taskes_report, container, false);
-
 
 
             TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_tab);
@@ -356,17 +338,13 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
     /**
      * TabListener for main Tske
      */
 
 
-    public static class mainFragment extends ListFragment
-    {
-
+    public static class mainFragment extends ListFragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
-
 
         public static mainFragment newInstance(int sectionNumber) {
             mainFragment fragment = new mainFragment();
@@ -380,59 +358,35 @@ public class mytaskes extends ActionBarActivity
         }
 
 
-
-
-
-
-
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
-         //   new CustomToast(getActivity(), numbers_digits[(int) id]);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-       String[] numbers_title=new  String[user.taskesList.size()-1];
+            ArrayList<ListItem> listData = getListData();
+            setListAdapter(new CustomListAdapter(inflater.getContext(), listData));
 
-            int i= 0;
-
-            for(Map<String,String> m:  user.taskesList){
-                if (m.containsKey("title")){
-                numbers_title[i]=m.get("title");
-                i++;}
-            }
-
-
-            // Each row in the list stores country name, CURRENCY and flag
-            List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
-
-            for(Map<String,String> m:  user.taskesList){
-                HashMap<String, String> hm = new HashMap<String,String>();
-                hm.put("txt", "title : " + m.get("title"));
-                hm.put("cur","des : " + m.get("dec"));
-               // hm.put("flag", Integer.toString(flags[i]) );
-                aList.add(hm);
-            }
-
-            // Keys used in Hashmap
-            String[] from = { "flag","txt","cur" };
-
-            // Ids of views in listview_layout
-            int[] to = { R.id.flag,R.id.txt,R.id.cur};
-
-
-
-/*
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    inflater.getContext(), android.R.layout.simple_list_item_1,
-                    numbers_title);
-*/
-SimpleAdapter adapter = new SimpleAdapter(inflater.getContext(), aList, R.layout.listview_layout, from, to);
-
-            setListAdapter(adapter);
             return super.onCreateView(inflater, container, savedInstanceState);
+        }
+
+
+        private ArrayList<ListItem> getListData() {
+            ArrayList<ListItem> listMockData = new ArrayList<ListItem>();
+
+            for (Map<String, String> m : user.taskesList) {
+                ListItem newsData = new ListItem();
+                newsData.setHeadline(m.get("title"));
+                newsData.setListDes(m.get("dec"));
+                newsData.setId(m.get("id"));
+
+                //newsData.setUrl(m.get("image"));
+                //newsData.setDate(m.get("date"));
+                listMockData.add(newsData);
+            }
+            return listMockData;
         }
     }
 

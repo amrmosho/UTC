@@ -5,18 +5,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
-import android.util.Log;
 
 import com.escapes.utc.options.config;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,11 +29,10 @@ public class uitls {
         bmOptions = new BitmapFactory.Options();
         bmOptions.inSampleSize = 1;
         Bitmap bm = loadBitmap(url, bmOptions);
-
-
-
         return bm;
     }
+
+
 
     public static Bitmap loadBitmap(String URL, BitmapFactory.Options options) {
         Bitmap bitmap = null;
