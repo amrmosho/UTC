@@ -1,5 +1,6 @@
 package com.escapes.utc;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -7,21 +8,30 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.escapes.utc.libs.serverOperations;
 import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.user;
+import com.escapes.utc.users.student.mytaskes;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 
 public class home extends ActionBarActivity {
@@ -30,71 +40,17 @@ public class home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        TextView in= (TextView)findViewById(R.id.info);
-
-        /*
-
-04-30 19:26:51.000  13365-13365/? D/new2222? id,16;title,amrmosho;email,empcland@gmail.com;Image,5514a1bfc8c0a.jpg;age,30;group,25;username,amrmosho;password,f06c22dbb3ce903ab93d9316517a26ef;phonenumber,;phoneid,;per,1;enabled,1;logintype,student;
-
-          [id] => 16
-    [title] => amrmosho
-    [email] => empcland@gmail.com
-    [Image] => 5514a1bfc8c0a.jpg
-    [age] => 30
-    [group] => 25
-    [username] => amrmosho
-    [password] => f06c22dbb3ce903ab93d9316517a26ef
-    [phonenumber] =>
-    [phoneid] =>
-    [per] => 1
-    [logintype] => student
-         */
-
-//Bitmap
+        TextView in = (TextView) findViewById(R.id.info);
 
         in.setText(user.data.get("title"));
-
-
-        RotateAnimation rotate= (RotateAnimation) AnimationUtils.loadAnimation(this, R.anim.rotate);
+        RotateAnimation rotate = (RotateAnimation) AnimationUtils.loadAnimation(this, R.anim.rotate);
         in.setAnimation(rotate);
-
-        uitls u=new uitls();
-
+        uitls u = new uitls();
         ImageView mImgView1 = (ImageView) findViewById(R.id.studen_img);
-
-
-                mImgView1.setImageBitmap(getRoundedShape(u.getImageFromUrl( user.data.get("Image"))));
-
-
+        mImgView1.setImageBitmap(u.getRoundedShape(u.getImageFromUrl(user.data.get("Image"))));
 
     }
 
-
-
-
-    public Bitmap getRoundedShape( Bitmap scaleBitmapImage) {
-        int targetWidth = 90;
-        int targetHeight = 0;
-        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,
-                targetHeight,Bitmap.Config.ARGB_8888);
-
-        Canvas canvas = new Canvas(targetBitmap);
-        Path path = new Path();
-        path.addCircle(((float) targetWidth - 1) / 2,
-                ((float) targetHeight - 1) / 2,
-                (Math.min(((float) targetWidth),
-                        ((float) targetHeight)) / 2),
-                Path.Direction.CCW);
-
-        canvas.clipPath(path);
-        Bitmap sourceBitmap = scaleBitmapImage;
-        canvas.drawBitmap(sourceBitmap,
-                new Rect(0, 0, sourceBitmap.getWidth(),
-                        sourceBitmap.getHeight()),
-                new Rect(0, 0, targetWidth, targetHeight), null);
-        return targetBitmap;
-    }
 
 
     @Override
@@ -118,4 +74,34 @@ public class home extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public void taskesButtonClick(View view) {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        //05-02 00:35:19.215  22030-22030/com.escapes.utc D/mytest﹕ id,16;title,amrmosho;email,empcland@gmail.com;Image,5514a1bfc8c0a.jpg;age,30;group,25;username,amrmosho;password,f06c22dbb3ce903ab93d9316517a26ef;phonenumber,;phoneid,;per,1;enabled,1;logintype,student;
+
+        nameValuePairs.add(new BasicNameValuePair("group", user.data.get("group")));
+        nameValuePairs.add(new BasicNameValuePair("logintype",user.data.get("logintype")));
+        nameValuePairs.add(new BasicNameValuePair("status", "tasks"));
+
+        String r = serverOperations.sendToServer(nameValuePairs);
+
+
+        if (r.trim().equalsIgnoreCase("-1")) {
+            Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
+            t.show();
+        } else {
+            user.fillTaskesData(r);
+
+            Intent i = new Intent(home.this, mytaskes.class);
+            startActivity(i);
+        }
+
+
+
+
+    }
+
+
 }

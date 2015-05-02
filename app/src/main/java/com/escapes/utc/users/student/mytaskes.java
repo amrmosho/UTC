@@ -12,11 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.ArrayAdapter;
 import android.support.v4.app.ListFragment;
 
 import com.escapes.utc.R;
+import com.escapes.utc.options.user;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -375,11 +382,8 @@ public class mytaskes extends ActionBarActivity
 
 
 
-        String[] numbers_text = new String[] { "one", "two", "three", "four",
-                "five", "six", "seven", "eight", "nine", "ten", "eleven",
-                "twelve", "thirteen", "fourteen", "fifteen" };
-        String[] numbers_digits = new String[] { "1", "2", "3", "4", "5", "6", "7",
-                "8", "9", "10", "11", "12", "13", "14", "15" };
+
+
 
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
@@ -389,9 +393,43 @@ public class mytaskes extends ActionBarActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+       String[] numbers_title=new  String[user.taskesList.size()-1];
+
+            int i= 0;
+
+            for(Map<String,String> m:  user.taskesList){
+                if (m.containsKey("title")){
+                numbers_title[i]=m.get("title");
+                i++;}
+            }
+
+
+            // Each row in the list stores country name, CURRENCY and flag
+            List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
+
+            for(Map<String,String> m:  user.taskesList){
+                HashMap<String, String> hm = new HashMap<String,String>();
+                hm.put("txt", "title : " + m.get("title"));
+                hm.put("cur","des : " + m.get("dec"));
+               // hm.put("flag", Integer.toString(flags[i]) );
+                aList.add(hm);
+            }
+
+            // Keys used in Hashmap
+            String[] from = { "flag","txt","cur" };
+
+            // Ids of views in listview_layout
+            int[] to = { R.id.flag,R.id.txt,R.id.cur};
+
+
+
+/*
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                     inflater.getContext(), android.R.layout.simple_list_item_1,
-                    numbers_text);
+                    numbers_title);
+*/
+SimpleAdapter adapter = new SimpleAdapter(inflater.getContext(), aList, R.layout.listview_layout, from, to);
 
             setListAdapter(adapter);
             return super.onCreateView(inflater, container, savedInstanceState);

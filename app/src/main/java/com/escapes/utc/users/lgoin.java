@@ -73,7 +73,8 @@ public class lgoin extends ActionBarActivity {
 
         EditText txt_username = (EditText) findViewById(R.id.txt_login_uaername);
         EditText txt_password = (EditText) findViewById(R.id.txt_lgoin_password);
-
+        txt_username.setText("amrmosho");
+        txt_password.setText("3mrmosho");
 
 
 
@@ -85,18 +86,14 @@ public class lgoin extends ActionBarActivity {
         nameValuePairs.add(new BasicNameValuePair("password", txt_password.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("status", "setlogin"));
 
-
-
         String r = serverOperations.sendToServer(nameValuePairs);
 
-Log.d("new2222",r);
-
-user.addUserData(r);
 
         if (r.trim().equalsIgnoreCase("-1")) {
             Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
             t.show();
         } else {
+            user.addUserData(r);
 
             Intent i = new Intent(lgoin.this, home.class);
             startActivity(i);
