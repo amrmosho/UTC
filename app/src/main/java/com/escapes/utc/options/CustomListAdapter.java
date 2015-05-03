@@ -19,7 +19,7 @@ public class CustomListAdapter extends BaseAdapter {
 
     private ArrayList listData;
     private LayoutInflater layoutInflater;
-
+    int resId=0;
     public CustomListAdapter(Context context, ArrayList listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(context);
@@ -51,8 +51,7 @@ public class CustomListAdapter extends BaseAdapter {
             holder.reporterNameView = (TextView) convertView.findViewById(R.id.txt);
             holder.reportedDateView = (TextView) convertView.findViewById(R.id.cur);
             holder.idDateView = (TextView) convertView.findViewById(R.id.myid);
-
-            //    holder.imageView = (ImageView) convertView.findViewById(R.id.flag);
+   holder.imageView = (ImageView) convertView.findViewById(R.id.flag);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -68,7 +67,13 @@ public class CustomListAdapter extends BaseAdapter {
 
 
       // holder.reportedDateView.setText(newsItem.getDate());
-      //  holder.imageView.setImageBitmap(u.getImageFromUrl(newsItem.getUrl()));
+      if (resId==0){
+          resId=R.drawable.taskeico;
+
+      }
+
+
+       holder.imageView.setImageResource(resId);
         return convertView;
     }
 

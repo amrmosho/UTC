@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -76,7 +77,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
         tid = "9";
 
 
-        Button t_addbt = (Button) rootView.findViewById(R.id.t_addbt);
+        ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.t_addbt);
         t_addbt.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -94,7 +95,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                     }
                 }
         );
-        Button t_editbt = (Button) rootView.findViewById(R.id.t_editbt);
+        ImageButton t_editbt = (ImageButton) rootView.findViewById(R.id.t_editbt);
 
 
         t_editbt.setOnClickListener(
@@ -114,7 +115,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
         );
 
 
-        Button t_delbt = (Button) rootView.findViewById(R.id.t_delbt);
+        ImageButton t_delbt = (ImageButton) rootView.findViewById(R.id.t_delbt);
 
         t_delbt.setOnClickListener(
                 new View.OnClickListener() {
