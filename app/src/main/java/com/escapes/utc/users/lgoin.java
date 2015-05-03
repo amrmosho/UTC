@@ -90,7 +90,7 @@ public class lgoin extends ActionBarActivity {
 
 
         if (r.trim().equalsIgnoreCase("-1")) {
-            Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(lgoin.this, "Username & password errors :( ", Toast.LENGTH_LONG);
             t.show();
         } else {
             user.addUserData(r);

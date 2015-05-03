@@ -165,6 +165,8 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="Status"
+
+
                             android:id="@+id/textView22"
                             android:layout_below="@+id/todo_tTitle"
                             android:layout_alignLeft="@+id/todo_tTitle"
@@ -183,6 +185,7 @@
                     <ListView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+                        android:background="@drawable/bg_key"
                         android:id="@+id/todolist" />
                 </LinearLayout>
 

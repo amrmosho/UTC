@@ -32,6 +32,12 @@ public class user {
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
 
 
+    public static String act_taske = "";
+    public static String act_todo = "";
+    public static String act_message = "";
+    public static String act_meetings = "";
+
+
     public static void addUserData(String Data) {
         String[] ds = Data.split(";");
         for (String d : ds) {
@@ -85,12 +91,93 @@ public class user {
     }
 
 
+
+
+    public static Map getTaskByid(String id) {
+        Map<String, String> tmap = new HashMap<String, String>();
+        for (Map<String, String> m : user.taskesList) {
+
+            if (m.get("id") != null) {
+                if (m.get("id").equals(id)) {
+
+                    tmap = m;
+
+                }
+            }
+
+        }
+        return tmap;
+
+    }
+
+    public static Map geDataByid(String id,List<Map<String, String>> liat) {
+        Map<String, String> tmap = new HashMap<String, String>();
+
+
+
+        for (Map<String, String> m : liat) {
+
+            if (m.get("id") != null) {
+                if (m.get("id").equals(id)) {
+
+                    tmap = m;
+
+                }
+            }
+
+        }
+        return tmap;
+
+    }
+
+
+
+
+
+
+
     public static void fillTaskesData(String Data) {
 
         taskesList = fillListData(Data);
 
     }
 
+
+
+
+    public static Map  getDataByID(String id,String Type) {
+
+        Map<String, String>  r;
+        switch (Type) {
+            case "task_messages"
+                    :
+                r=geDataByid(id,messagesList);
+                break;
+
+            case "task_meetings"
+                    :
+                r=geDataByid(id, meetingsList);
+
+                break;
+
+            case "task_todolist"
+                    :
+                r=geDataByid(id, todoList);
+                break;
+            case "task_requests"
+                    :
+                r=geDataByid(id, reportsList);
+                break;
+
+            default:
+                r=geDataByid(id, taskesList);
+
+                break;
+        }
+
+        return r;
+
+    }
     public static void fillListData(String Data, String Type) {
         switch (Type) {
             case "task_messages"
@@ -131,30 +218,10 @@ public class user {
     }
 
 
-    public static Map getTaskByid(String id) {
-        Map<String, String> tmap = new HashMap<String, String>();
-        for (Map<String, String> m : user.taskesList) {
-
-            if (m.get("id") != null) {
-                if (m.get("id").equals(id)) {
-
-                    tmap = m;
-
-                }
-            }
-
-        }
-        return tmap;
-
-    }
-
 
     public static String getStatus(String id) {
         String r = "";
         switch (id) {
-
-            //             <option value="1">Draft</option><option value="2">
-            // Created</option><option value="3">In Progress</option><option value="4">Put on hold</option><option value="5">Completed</option><option value="6">Cancelled</option><option value="7">Verified</option></select>
 
             case "1":
                 r = "Draft";
@@ -198,7 +265,6 @@ public class user {
     }
 
 
-
     public static String set_insert(String table, Map<String, String> setdata) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         for (String k : setdata.keySet()) {
@@ -210,7 +276,7 @@ public class user {
         return r.trim();
     }
 
-    public static String set_update(String table, Map<String, String> setdata, String where ) {
+    public static String set_update(String table, Map<String, String> setdata, String where) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         for (String k : setdata.keySet()) {
             nameValuePairs.add(new BasicNameValuePair(k, setdata.get(k)));
@@ -223,7 +289,7 @@ public class user {
     }
 
 
-    public static String set_delete(String table, String where ) {
+    public static String set_delete(String table, String where) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("where", where));
         nameValuePairs.add(new BasicNameValuePair("table", table));
@@ -231,25 +297,5 @@ public class user {
         String r = serverOperations.sendToServer(nameValuePairs);
         return r.trim();
     }
-    /*
-
-
-      case "insert":
-        $db->set_insert( $_POST['table'], $_POST);
-
-
-
-
-        break;
-           case "edit":
-        $db->set_insert( $_POST['table'], $_POST ,$_POST['where'] );
-
-
-
-
-        break;
-          case "delete":
-        $db->set_delete( $_POST['table'],$_POST['where'] );
-     */
 
 }

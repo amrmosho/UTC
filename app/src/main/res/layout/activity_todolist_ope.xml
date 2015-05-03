@@ -74,5 +74,5 @@
         android:layout_alignEnd="@+id/t_config_data"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="t_config_send_click"/>
+    />
 </RelativeLayout>

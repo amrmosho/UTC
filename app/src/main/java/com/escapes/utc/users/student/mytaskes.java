@@ -1,35 +1,29 @@
 package com.escapes.utc.users.student;
 
-import android.app.DialogFragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.ListFragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.support.v4.app.ListFragment;
-import android.widget.TextView;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import com.escapes.utc.R;
 import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
+import com.escapes.utc.users.student.Fragments.meetingsFragment;
+import com.escapes.utc.users.student.Fragments.todolistFragment;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -166,200 +160,6 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-    /**
-     * TabListener for todoList
-     */
-
-
-
-    public static class EditNameDialog extends DialogFragment {
-
-        private EditText mEditText;
-        public static EditNameDialog newInstance(int num){
-
-            EditNameDialog dialogFragment = new EditNameDialog();
-            Bundle bundle = new Bundle();
-            bundle.putInt("num", num);
-            dialogFragment.setArguments(bundle);
-
-            return dialogFragment;
-
-        }
-        public EditNameDialog() {
-            // Empty constructor required for DialogFragment
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.activity_todolist_ope, container);
-        //    mEditText = (EditText) view.findViewById(R.id.txt_your_name);
-            getDialog().setTitle("Hello");
-
-            return view;
-        }
-    }
-    public static class todolistFragment extends Fragment  {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-
-        public static  todolistFragment newInstance(int sectionNumber) {
-            todolistFragment fragment = new todolistFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-
-
-
-        public todolistFragment() {
-        }
-
-
-        public void t_addbt_click(View v){
-
-            FragmentManager fm = getSherlockActivity().getSupportFragmentManager();
-
-            DialogFragment dialogFrag = EditNameDialog.newInstance(111);
-           // dialogFrag.setTargetFragment(this, DIALOG_FRAGMENT);\
-
-            DialogFragment.setTargetFragment(this, 0);
-
-            dialogFrag.show(getFragmentManager().beginTransaction(), "dialog");
-            // Show Alert DialogFragment
-/*
-
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
- */
-
-
-        }
-
-
-
-uitls u=new uitls();
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_task_todolist, container, false);
-            String tid = "9";
-
-            Map m = user.getTaskByid(tid);
-
-
-            TextView todo_tTitle = (TextView) rootView.findViewById(R.id.todo_tTitle);
-
-            TextView todo_tStatus = (TextView) rootView.findViewById(R.id.todo_tStatus);
-
-            TextView todo_tStartData = (TextView) rootView.findViewById(R.id.todo_tStartData);
-
-            TextView todo_tEndData = (TextView) rootView.findViewById(R.id.todo_tEndData);
-
-            TextView todo_tDes = (TextView) rootView.findViewById(R.id.todo_tDes);
-
-
-            user.getData("task_todolist" , "task_id='" +tid + "' and users_id='"+ user.data.get("id") + "'");
-
-           ListView lw= (ListView) rootView.findViewById(R.id.todolist);
-
-
-            ArrayList<ListItem> listData = u.getListData(user.todoList);
-            lw.setAdapter(new CustomListAdapter(inflater.getContext(), listData));
-
-
-
-            todo_tTitle.setText((String) m.get("title"));
-            todo_tStatus.setText(user.getStatus((String) m.get("status")));
-            todo_tStartData.setText((String) m.get("created"));
-            todo_tEndData.setText((String) m.get("ended"));
-            todo_tDes.setText((String) m.get("dec")+"\n"+(String) m.get("requests"));
-
-
-            TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_todo);
-            th.setup();
-            TabHost.TabSpec tc = th.newTabSpec("Taske");
-            tc.setIndicator("Taske");
-            tc.setContent(R.id.student_taske_tab_todotsk);
-            th.addTab(tc);
-
-
-            tc = th.newTabSpec("tab3");
-            tc.setIndicator("TodoList");
-            tc.setContent(R.id.student_taske_tab_todo);
-            th.addTab(tc);
-
-
-            return rootView;
-        }
-    }
-
-
-    /**
-     * TabListener for messages
-     */
-
-    public static class messagesFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-
-        public static messagesFragment newInstance(int sectionNumber) {
-            messagesFragment fragment = new messagesFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-
-        public messagesFragment() {
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_task_messages, container, false);
-            return rootView;
-        }
-    }
-
-
-    /**
-     * TabListener for meeting
-     */
-
-    public static class meetingsFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-
-        public static meetingsFragment newInstance(int sectionNumber) {
-            meetingsFragment fragment = new meetingsFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-
-        public meetingsFragment() {
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes_meetings, container, false);
-            return rootView;
-        }
-    }
-
 
     /**
      * TabListener for main Tske
@@ -413,6 +213,36 @@ uitls u=new uitls();
      * TabListener for main Tske
      */
 
+
+
+
+
+
+    public static class messagesFragment extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+
+        public static messagesFragment newInstance(int sectionNumber) {
+            messagesFragment fragment = new messagesFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+
+        public messagesFragment() {
+        }
+
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_student_task_messages, container, false);
+            return rootView;
+        }
+    }
 
     public static class mainFragment extends ListFragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
