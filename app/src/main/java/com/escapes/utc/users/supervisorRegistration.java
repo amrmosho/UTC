@@ -33,6 +33,7 @@ public class supervisorRegistration extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
+        sp_group = (Spinner) findViewById(R.id.sp_supervisor_group);
 
         updateGroup();
         Button bt_send = (Button) findViewById(R.id.bt_supervisor_send);
@@ -59,7 +60,6 @@ public class supervisorRegistration extends ActionBarActivity {
         final EditText txt_age = (EditText) findViewById(R.id.txt_supervisor_age);
         final EditText txt_email = (EditText) findViewById(R.id.txt_supervisor_email);
         final EditText txt_username = (EditText) findViewById(R.id.txt_supervisor_username);
-        sp_group = (Spinner) findViewById(R.id.sp_supervisor_group);
 
 
         Intent i = new Intent(supervisorRegistration.this, studentRegistrationStep2.class);

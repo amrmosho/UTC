@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,6 @@ import java.util.Map;
 
         public reportFragment() {
         }
-
-
 
 
 
@@ -267,27 +266,27 @@ import java.util.Map;
             }
 
 
-            final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
+            final View v = inflater.inflate(R.layout.activity_reports_ope, container, false);
 
-            final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
-            final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
-            final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
-            t_config_send.setText("Save");
+            final EditText t_config_title = (EditText) v.findViewById(R.id.r_config_title);
+            final Button t_config_date = (Button) v.findViewById(R.id.r_config_file);
+            final EditText t_config_data = (EditText) v.findViewById(R.id.r_config_dec);
+            final Button r_config_send = (Button) v.findViewById(R.id.r_config_send);
+            r_config_send.setText("Save");
 
 
-            t_config_send.setOnClickListener(new View.OnClickListener() {
+            r_config_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
 
-                    m.put("title", t_config_title.getText().toString());
-                    m.put("date", t_config_date.getText().toString());
+                  /*  m.put("title", t_config_title.getText().toString());
+                    m.put("file", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
 
                     user.set_insert(me, m);
                     getDialog().dismiss();
-                    callback.onYesClick();
+                    callback.onYesClick();*/
 
 
                 }
@@ -324,26 +323,26 @@ import java.util.Map;
             }
 
 
-            final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
+            final View v = inflater.inflate(R.layout.activity_reports_ope, container, false);
 
-            final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
-            final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
-            final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
+            final EditText t_config_title = (EditText) v.findViewById(R.id.r_config_title);
+            final Button t_config_date = (Button) v.findViewById(R.id.r_config_file);
+            final EditText t_config_data = (EditText) v.findViewById(R.id.r_config_dec);
+            final Button r_config_send = (Button) v.findViewById(R.id.r_config_send);
 
 
             Map<String, String> edata = user.getDataByID(user.act_report, me);
 
 
             t_config_title.setText(edata.get("title"));
-            t_config_date.setText(edata.get("date"));
+         //   t_config_date.setText(edata.get("date"));
             t_config_data.setText(edata.get("dec"));
 
 
-            t_config_send.setText("Update");
+            r_config_send.setText("Update");
 
 
-            t_config_send.setOnClickListener(new View.OnClickListener() {
+            r_config_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();

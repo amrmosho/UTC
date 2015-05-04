@@ -2,10 +2,11 @@ package com.escapes.utc.users;
 
 import android.content.Intent;
 import android.os.StrictMode;
-import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +25,27 @@ import java.util.ArrayList;
 public class lgoin extends ActionBarActivity {
 
 
+
+void UpdateTitle(String title){
+
+
+    ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayShowTitleEnabled(true);
+    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+    actionBar.setTitle(title);
+}
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lgoin);
+
+
+
+        UpdateTitle("Lgoin");
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {

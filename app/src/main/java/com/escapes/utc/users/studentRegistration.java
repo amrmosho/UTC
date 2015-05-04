@@ -35,7 +35,7 @@ public class studentRegistration extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-
+        sp_group = (Spinner) findViewById(R.id.sp_sudent_groip);
         updateGroup();
         Button bt_send = (Button) findViewById(R.id.bt_sudent_send);
 
@@ -73,7 +73,7 @@ public class studentRegistration extends ActionBarActivity {
         final EditText txt_username = (EditText) findViewById(R.id.txt_sudent_username);
 
 
-        sp_group = (Spinner) findViewById(R.id.sp_sudent_groip);
+
 
 
         Intent i = new Intent(studentRegistration.this, studentRegistrationStep2.class);

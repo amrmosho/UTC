@@ -1,10 +1,12 @@
 package com.escapes.utc.libs;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.support.v7.app.ActionBar;
 
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.config;
@@ -34,6 +36,8 @@ public class uitls {
         Bitmap bm = loadBitmap(url, bmOptions);
         return bm;
     }
+
+
 
 
 
@@ -122,12 +126,16 @@ public class uitls {
         ArrayList<ListItem> listMockData = new ArrayList<ListItem>();
         for (Map<String, String> m : taskesList) {
             ListItem newsData = new ListItem();
+
+
             newsData.setHeadline(m.get("title"));
             newsData.setListDes(m.get("dec"));
             newsData.setId(m.get("id"));
             //newsData.setUrl(m.get("image"));
             //newsData.setDate(m.get("date"));
             listMockData.add(newsData);
+
+
         }
         return listMockData;
     }

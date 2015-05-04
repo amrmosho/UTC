@@ -12,10 +12,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
 
         android:weightSum="1"
-        android:id="@+id/aaaaa">
+        android:id="@+id/aaaaa"
+        style="@style/light">
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,18 +70,18 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="creat New Account"
         android:id="@+id/textView2"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/bt_login_send"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <RadioGroup
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_alignRight="@+id/textView2"

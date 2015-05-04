@@ -105,6 +105,14 @@
     <style name="TextView1.TextView2">
         <item name="android:padding">30dp</item>
     </style>
+    <style name="light">
+        <item name="android:padding">10dp</item>
+
+        <item name="android:background">@drawable/list_bg</item>
+    </style>
+
+
+
 
     <style name="tabs">
         <item name="android:padding">5dp</item>
@@ -112,6 +120,8 @@
         <item name="android:layout_margin">20dp</item>
         <item name="android:background">@drawable/list_bg</item>
         </style>
+
+
 
     <style name="bar">
         <item name="android:layout_width">wrap_content</item>
@@ -150,7 +160,7 @@
         <item name="android:textStyle">bold</item>
     </style>
     <!-- You just keep adding periods to add to additional styles -->
-    <style name="TextView1.TextView2.TextView3">
+    <style name="button">
         <item name="android:layout_marginTop">15dp</item>
     </style>
 

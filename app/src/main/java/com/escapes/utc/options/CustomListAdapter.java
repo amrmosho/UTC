@@ -19,7 +19,8 @@ public class CustomListAdapter extends BaseAdapter {
 
     private ArrayList listData;
     private LayoutInflater layoutInflater;
-    int resId=0;
+    int resId = 0;
+
     public CustomListAdapter(Context context, ArrayList listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(context);
@@ -45,35 +46,34 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.listview_layout, null);
             holder = new ViewHolder();
-          //  holder.headlineView = (TextView) convertView.findViewById(R.id.title);
+            //  holder.headlineView = (TextView) convertView.findViewById(R.id.title);
 
 
             holder.reporterNameView = (TextView) convertView.findViewById(R.id.txt);
             holder.reportedDateView = (TextView) convertView.findViewById(R.id.cur);
-            holder.idDateView = (TextView) convertView.findViewById(R.id.myid);
-   holder.imageView = (ImageView) convertView.findViewById(R.id.flag);
+         //   holder.idDateView = (TextView) convertView.findViewById(R.id.myid);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.flag);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         uitls u = new uitls();
 
-      ListItem newsItem = (ListItem) listData.get(position);
-      // String a=(newsItem.getHeadline());
-         holder.reporterNameView.setText(newsItem.getHeadline());
+        ListItem newsItem = (ListItem) listData.get(position);
+        // String a=(newsItem.getHeadline());
+        holder.reporterNameView.setText(newsItem.getHeadline());
         holder.reportedDateView.setText(newsItem.getListDes());
-        holder.idDateView.setText(newsItem.getId());
+      //  holder.idDateView.setText(newsItem.getId());
 
 
+        // holder.reportedDateView.setText(newsItem.getDate());
+        if (resId == 0) {
+            resId = R.drawable.taskeico;
 
-      // holder.reportedDateView.setText(newsItem.getDate());
-      if (resId==0){
-          resId=R.drawable.taskeico;
-
-      }
+        }
 
 
-       holder.imageView.setImageResource(resId);
+        holder.imageView.setImageResource(resId);
         return convertView;
     }
 
@@ -81,7 +81,7 @@ public class CustomListAdapter extends BaseAdapter {
         TextView headlineView;
         TextView reporterNameView;
         TextView reportedDateView;
-        TextView idDateView;
+     //   TextView idDateView;
         ImageView imageView;
     }
 }

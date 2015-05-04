@@ -40,21 +40,14 @@
         android:textSize="15dp"
         android:text="txt"
         android:layout_marginTop="15dp"
-        style="@style/label" />
+        style="@style/label" /><![CDATA[
 
 
         />
      
             
 
-        <TextView
-            android:background="@drawable/bg_key"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="id"
-            android:id="@+id/myid" />
+        ]]>
 
         <TextView
 
