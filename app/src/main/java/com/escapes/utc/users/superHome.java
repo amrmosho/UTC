@@ -80,7 +80,7 @@ public class superHome extends ActionBarActivity {
 
 
 
-    public void taskesButtonClick(View view) {
+    public void taskesSButtonClick(View view) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("group", user.data.get("id")));
         nameValuePairs.add(new BasicNameValuePair("logintype", user.data.get("logintype")));
