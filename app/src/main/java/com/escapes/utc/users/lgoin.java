@@ -37,7 +37,7 @@ void UpdateTitle(String title){
 
 
 
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +91,10 @@ void UpdateTitle(String title){
 
         EditText txt_username = (EditText) findViewById(R.id.txt_login_uaername);
         EditText txt_password = (EditText) findViewById(R.id.txt_lgoin_password);
-        txt_username.setText("amrmosho");
+   /*     txt_username.setText("amrmosho");
         txt_password.setText("3mrmosho");
 
-
+*/
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
@@ -113,8 +113,18 @@ void UpdateTitle(String title){
         } else {
             user.addUserData(r);
 
-            Intent i = new Intent(lgoin.this, home.class);
-            startActivity(i);
+            if (user.data.get("logintype").equalsIgnoreCase("student")){
+
+                Intent i = new Intent(lgoin.this, home.class);
+                startActivity(i);
+
+            }else{
+
+                Intent i = new Intent(lgoin.this, superHome.class);
+                startActivity(i);
+
+            }
+
         }
 
     }

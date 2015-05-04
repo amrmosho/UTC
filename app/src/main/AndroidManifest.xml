@@ -82,6 +82,10 @@
             android:name=".users.student.todolist_ope"
             android:label="@string/title_activity_todolist_ope" >
         </activity>
+        <activity
+            android:name=".users.superHome"
+            android:label="@string/title_activity_super_home" >
+        </activity>
     </application>
 
 </manifest>

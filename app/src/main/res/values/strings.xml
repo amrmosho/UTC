@@ -71,5 +71,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_mytaskes">mytaskes</string>
     <string name="title_activity_todolist_ope">todolist_ope</string>
+    <string name="title_activity_super_home">superHome</string>
 
 </resources>

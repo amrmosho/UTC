@@ -24,7 +24,6 @@ public class user {
     public static HashMap<String, String> data = new HashMap<String, String>();
 
     public static List<Map<String, String>> taskesList = new ArrayList<Map<String, String>>();
-    public static List<Map<String, String>> todList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> messagesList = new ArrayList<Map<String, String>>();
 
     public static List<Map<String, String>> meetingsList = new ArrayList<Map<String, String>>();
@@ -216,6 +215,11 @@ public class user {
     public static void clearTaskesData(String Data) {
         taskesList.clear();
 
+
+
+
+
+
     }
 
 
@@ -251,6 +255,25 @@ public class user {
     }
 
 
+
+    public static void allDataClear(){
+
+        taskesList.clear();
+        data.clear();
+
+
+        messagesList.clear();
+        meetingsList.clear();
+        todoList.clear();
+        reportsList.clear();
+
+
+      act_message="";
+
+act_todo="";
+        act_report="";
+        act_taske="";
+    }
     public static String getData(String Type, String Where) {
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
