@@ -65,8 +65,8 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
 
 
 
-        TextView t= (TextView) findViewById(R.id.textView18);
-        t.setText("f1111111111111111111111111111111111111111111111111111111111111111111111111111111");
+     //   TextView t= (TextView) findViewById(R.id.textView18);
+      //  t.setText("f1111111111111111111111111111111111111111111111111111111111111111111111111111111");
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -192,7 +192,7 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes_report, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_student_task_reports, container, false);
 
 
 
@@ -291,7 +291,7 @@ public class studentTaskes extends ActionBarActivity implements ActionBar.TabLis
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes_meetings, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_student_task_meetings, container, false);
             return rootView;
         }
     }

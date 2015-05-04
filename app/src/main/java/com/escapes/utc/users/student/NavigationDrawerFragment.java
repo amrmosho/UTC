@@ -116,6 +116,7 @@ public class NavigationDrawerFragment extends Fragment {
                         "Todolist",
                         "Messages",
                         "Meetings",
+                        "Reportes"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

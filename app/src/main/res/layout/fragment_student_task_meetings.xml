@@ -8,7 +8,7 @@
     <TabHost
         android:layout_width="fill_parent"
         android:layout_height="399dp"
-        android:id="@+id/student_taske_m"
+        android:id="@+id/student_taske_g"
         android:layout_gravity="center_horizontal|top"
         style="@style/tabs">
 
@@ -28,7 +28,7 @@
                 android:layout_height="fill_parent">
 
                 <LinearLayout
-                    android:id="@+id/student_m_tab_task"
+                    android:id="@+id/student_g_tab_task"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="vertical"
@@ -51,8 +51,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="m_tTitle"
-                            android:id="@+id/m_tTitle"
+                            android:text="g_tTitle"
+                            android:id="@+id/g_tTitle"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.12"
                             android:layout_alignParentTop="true"
@@ -64,8 +64,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="m_tStatus"
-                            android:id="@+id/m_tStatus"
+                            android:text="g_tStatus"
+                            android:id="@+id/g_tStatus"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.12"
 
@@ -78,8 +78,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="m_tStartData"
-                            android:id="@+id/m_tStartData"
+                            android:text="g_tStartData"
+                            android:id="@+id/g_tStartData"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.12"
 
@@ -91,11 +91,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="m_tDes"
-                            android:id="@+id/m_tDes"
+                            android:text="g_tDes"
+                            android:id="@+id/g_tDes"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.12"
-                            android:layout_below="@+id/m_tEndData"
+                            android:layout_below="@+id/g_tEndData"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_marginTop="34dp" />
@@ -104,8 +104,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="m_tEndData"
-                            android:id="@+id/m_tEndData"
+                            android:text="g_tEndData"
+                            android:id="@+id/g_tEndData"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="0.12"
                             android:layout_below="@+id/textView21"
@@ -130,7 +130,7 @@
                             android:text="End Date"
                             android:id="@+id/textView21"
                             style="@style/labelData"
-                            android:layout_below="@+id/m_tStartData"
+                            android:layout_below="@+id/g_tStartData"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true" />
 
@@ -142,16 +142,16 @@
 
 
                             android:id="@+id/textView22"
-                            android:layout_below="@+id/m_tTitle"
-                            android:layout_alignLeft="@+id/m_tTitle"
-                            android:layout_alignStart="@+id/m_tTitle"
+                            android:layout_below="@+id/g_tTitle"
+                            android:layout_alignLeft="@+id/g_tTitle"
+                            android:layout_alignStart="@+id/g_tTitle"
                             style="@style/labelData" />
 
                     </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/student_m_tab_data"
+                    android:id="@+id/student_g_tab_data"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="vertical">
@@ -160,7 +160,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@drawable/bg_key"
-                        android:id="@+id/mlist" />
+                        android:id="@+id/glist" />
                 </LinearLayout>
 
             </FrameLayout>
@@ -177,11 +177,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="edit"
-            android:id="@+id/m_editbt"
+            android:id="@+id/g_editbt"
             android:layout_gravity="center"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/m_addbt"
-            android:layout_toEndOf="@+id/m_addbt"
+            android:layout_toRightOf="@+id/t_addbt"
+            android:layout_toEndOf="@+id/t_addbt"
             android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
             android:src="@drawable/edit_icone"
@@ -192,13 +192,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="add"
-            android:id="@+id/m_addbt"
-            android:onClick="t_addbt_click"
+            android:id="@+id/g_addbt"
             android:layout_gravity="left|center_vertical"
-            android:layout_alignBaseline="@+id/m_delbt"
-            android:layout_alignBottom="@+id/m_delbt"
-            android:layout_toRightOf="@+id/m_delbt"
-            android:layout_toEndOf="@+id/m_delbt"
+            android:layout_alignBaseline="@+id/t_delbt"
+            android:layout_alignBottom="@+id/t_delbt"
+            android:layout_toRightOf="@+id/t_delbt"
+            android:layout_toEndOf="@+id/t_delbt"
             android:layout_marginLeft="11dp"
             android:layout_marginStart="11dp"
             android:src="@drawable/add_icone"
@@ -209,7 +208,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="delelet"
-            android:id="@+id/m_delbt"
+            android:id="@+id/g_delbt"
             android:layout_gravity="right|center_vertical"
             android:src="@drawable/delete_icone"
             android:scaleType="fitCenter"

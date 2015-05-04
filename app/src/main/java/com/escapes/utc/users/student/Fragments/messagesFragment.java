@@ -3,9 +3,8 @@ package com.escapes.utc.users.student.Fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,34 +22,24 @@ import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-
-import android.support.v4.app.DialogFragment;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by empcl_000 on 03/05/2015.
+ * Created by empcl_000 on 04/05/2015.
  */
 
 
-interface DialogClickListener {
-    public void onYesClick();
 
-    public void onNoClick();
-}
 
-public class todolistFragment extends Fragment implements DialogClickListener {
+public class messagesFragment extends Fragment  implements DialogClickListener  {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
 
-    public static todolistFragment newInstance(int sectionNumber) {
-        todolistFragment fragment = new todolistFragment();
+    public static messagesFragment newInstance(int sectionNumber) {
+        messagesFragment fragment = new messagesFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -58,7 +47,20 @@ public class todolistFragment extends Fragment implements DialogClickListener {
     }
 
 
-    public todolistFragment() {
+    public messagesFragment() {
+    }
+
+
+    String me = "task_messages";
+
+    @Override
+    public void onYesClick() {
+
+    }
+
+    @Override
+    public void onNoClick() {
+
     }
 
 
@@ -67,38 +69,47 @@ public class todolistFragment extends Fragment implements DialogClickListener {
     String tid = "";
     LayoutInflater inf;
 
+    void updateList() {
+        user.getData(me, "task_id='" + tid + "'");
+
+
+        ArrayList<ListItem> listData = u.getListData(user.messagesList);
+        lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
+
+    }
+
+//c
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         inf = inflater;
+        View rootView = inf.inflate(R.layout.fragment_student_task_messages, container, false);
+        tid = user.act_taske;
 
 
-        View rootView = inf.inflate(R.layout.fragment_student_task_todolist, container, false);
-        tid = "9";
+        //////Bar Actions
 
 
-
-
-
-        ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.t_addbt);
+        ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.m_addbt);
         t_addbt.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
 
-
-
-
                         DialogFragment newFragment = addFragment.newInstance();
 
-                        newFragment.setTargetFragment(todolistFragment.this, 0);
+                        newFragment.setTargetFragment(messagesFragment.this, 0);
 
                         newFragment.show(getFragmentManager(), "dialog");
                     }
                 }
         );
-        ImageButton t_editbt = (ImageButton) rootView.findViewById(R.id.t_editbt);
+        ImageButton t_editbt = (ImageButton) rootView.findViewById(R.id.m_editbt);
 
 
         t_editbt.setOnClickListener(
@@ -109,7 +120,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
 
                         DialogFragment eFragment = editFragment.newInstance();
 
-                        eFragment.setTargetFragment(todolistFragment.this, 0);
+                        eFragment.setTargetFragment(messagesFragment.this, 0);
 
                         eFragment.show(getFragmentManager(), "dialog");
 
@@ -118,13 +129,12 @@ public class todolistFragment extends Fragment implements DialogClickListener {
         );
 
 
-        ImageButton t_delbt = (ImageButton) rootView.findViewById(R.id.t_delbt);
+        ImageButton t_delbt = (ImageButton) rootView.findViewById(R.id.m_delbt);
 
         t_delbt.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
 
 
                         new AlertDialog.Builder(inf.getContext())
@@ -134,12 +144,13 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                                     public void onClick(DialogInterface dialog, int whichButton) {
-                                      //  Toast.makeText(inf.getContext(), "Yaay", Toast.LENGTH_SHORT).show();
+                                        //  Toast.makeText(inf.getContext(), "Yaay", Toast.LENGTH_SHORT).show();
 
 
-                                        user.set_delete("task_todolist", "id='" + user.act_todo + "'");
+                                        user.set_delete(me, "id='" + user.act_message + "'");
                                         updateList();
-                                    }})
+                                    }
+                                })
                                 .setNegativeButton(android.R.string.no, null).show();
 
 
@@ -148,16 +159,19 @@ public class todolistFragment extends Fragment implements DialogClickListener {
         );
 
 
+        //////BarActions
+
+        //////ListViwe
 
 
-        lw = (ListView) rootView.findViewById(R.id.todolist);
+        lw = (ListView) rootView.findViewById(R.id.mlist);
 
 
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                user.act_todo = user.todoList.get(position).get("id");
+                user.act_message = user.messagesList.get(position).get("id");
 
                 view.setSelected(true);
 
@@ -168,26 +182,28 @@ public class todolistFragment extends Fragment implements DialogClickListener {
 
         updateList();
 
+        //////ListViwe
 
-        TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_todo);
+
+        TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_m);
         th.setup();
         TabHost.TabSpec tc = th.newTabSpec("Taske");
         tc.setIndicator("Taske");
-        tc.setContent(R.id.student_taske_tab_todotsk);
+        tc.setContent(R.id.student_m_tab_task);
         th.addTab(tc);
 
 
         tc = th.newTabSpec("tab3");
-        tc.setIndicator("TodoList");
-        tc.setContent(R.id.student_taske_tab_todo);
+        tc.setIndicator("Messages");
+        tc.setContent(R.id.student_m_tab_data);
         th.addTab(tc);
 
 
-        TextView todo_tTitle = (TextView) rootView.findViewById(R.id.todo_tTitle);
-        TextView todo_tStatus = (TextView) rootView.findViewById(R.id.todo_tStatus);
-        TextView todo_tStartData = (TextView) rootView.findViewById(R.id.todo_tStartData);
-        TextView todo_tEndData = (TextView) rootView.findViewById(R.id.todo_tEndData);
-        TextView todo_tDes = (TextView) rootView.findViewById(R.id.todo_tDes);
+        TextView todo_tTitle = (TextView) rootView.findViewById(R.id.m_tTitle);
+        TextView todo_tStatus = (TextView) rootView.findViewById(R.id.m_tStatus);
+        TextView todo_tStartData = (TextView) rootView.findViewById(R.id.m_tStartData);
+        TextView todo_tEndData = (TextView) rootView.findViewById(R.id.m_tEndData);
+        TextView todo_tDes = (TextView) rootView.findViewById(R.id.m_tDes);
 
 
         Map m = user.getTaskByid(tid);
@@ -203,35 +219,14 @@ public class todolistFragment extends Fragment implements DialogClickListener {
     }
 
 
-    void updateList() {
-
-
-        user.getData("task_todolist", "task_id='" + tid + "' and users_id='" + user.data.get("id") + "'");
-
-        ArrayList<ListItem> listData = u.getListData(user.todoList);
-        lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
-
-    }
-
-    @Override
-    public void onYesClick() {
-        Log.d("mytest", "update");
-        updateList();
-
-    }
-
-    @Override
-    public void onNoClick() {
-
-    }
-
-
-
-
     /**
      * TabListener for messages
      */
     public static class addFragment extends DialogFragment {
+
+
+        String me = "task_messages";
+
 
         @Override
         public void onDismiss(DialogInterface dialog) {
@@ -251,7 +246,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                                  Bundle savedInstanceState) {
 
 
-            getDialog().setTitle("Add New [ToDo]");
+            getDialog().setTitle("Add New [Message]");
 
 
             try {
@@ -279,7 +274,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                     m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
 
-                    user.set_insert("task_todolist", m);
+                    user.set_insert(me, m);
                     getDialog().dismiss();
                     callback.onYesClick();
 
@@ -293,6 +288,10 @@ public class todolistFragment extends Fragment implements DialogClickListener {
 
 
     public static class editFragment extends DialogFragment {
+
+
+        String me = "task_messages";
+
         static editFragment newInstance() {
             return new editFragment();
         }
@@ -304,7 +303,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                                  Bundle savedInstanceState) {
 
 
-            getDialog().setTitle("Edit  [ToDo]");
+            getDialog().setTitle("Edit  [Message]");
 
 
             try {
@@ -322,7 +321,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
             final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
 
 
-            Map<String, String> edata = user.getDataByID(user.act_todo, "task_todolist");
+            Map<String, String> edata = user.getDataByID(user.act_message, me);
 
 
             t_config_title.setText(edata.get("title"));
@@ -341,7 +340,7 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                     m.put("title", t_config_title.getText().toString());
                     m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
-                    user.set_update("task_todolist", m, "id='" + user.act_todo + "'");
+                    user.set_update(me, m, "id='" + user.act_message + "'");
                     getDialog().dismiss();
                     callback.onYesClick();
 

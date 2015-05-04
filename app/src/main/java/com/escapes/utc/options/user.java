@@ -32,11 +32,12 @@ public class user {
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
 
 
-    public static String act_taske = "";
+    public static String act_taske = "9";
     public static String act_todo = "";
     public static String act_message = "";
     public static String act_meetings = "";
 
+    public static String act_report = "";
 
     public static void addUserData(String Data) {
         String[] ds = Data.split(";");

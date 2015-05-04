@@ -20,8 +20,7 @@ import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
-import com.escapes.utc.users.student.Fragments.meetingsFragment;
-import com.escapes.utc.users.student.Fragments.todolistFragment;
+import com.escapes.utc.users.student.Fragments.*;
 
 import java.util.ArrayList;
 
@@ -81,20 +80,21 @@ public class mytaskes extends ActionBarActivity
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, todolistFragment.newInstance(position + 1))
+                        .replace(R.id.container, messagesFragment.newInstance(position + 1))
                         .commit();
 
                 break;
+
             case 3:
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, studentTaskes.messagesFragment.newInstance(position + 1))
+                        .replace(R.id.container, meetingsFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 4:
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                        .replace(R.id.container, reportFragment.newInstance(position + 1))
                         .commit();
                 break;
         }
@@ -117,6 +117,9 @@ public class mytaskes extends ActionBarActivity
                 break;
             case 3:
                 mTitle = "Meetings";
+                break;
+            case 4:
+                mTitle = "Reportes";
                 break;
         }
 
@@ -161,88 +164,7 @@ public class mytaskes extends ActionBarActivity
 
 
 
-    /**
-     * TabListener for main Tske
-     */
-    public static class reportFragment extends Fragment {
 
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static mainFragment newInstance(int sectionNumber) {
-            mainFragment fragment = new mainFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public reportFragment() {
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_taskes_report, container, false);
-            TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_tab);
-
-            th.setup();
-            TabHost.TabSpec tc = th.newTabSpec("Taske");
-            tc.setIndicator("tabtext");
-            tc.setContent(R.id.student_taske_tab_tsk);
-            th.addTab(tc);
-
-
-            tc = th.newTabSpec("tab2");
-            tc.setIndicator("Report");
-            tc.setContent(R.id.student_taske_tab_rqs);
-            th.addTab(tc);
-
-
-            tc = th.newTabSpec("tab3");
-            tc.setIndicator("Markes");
-            tc.setContent(R.id.student_taske_tab_mark);
-            th.addTab(tc);
-
-            return rootView;
-        }
-    }
-
-
-    /**
-     * TabListener for main Tske
-     */
-
-
-
-
-
-
-    public static class messagesFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-
-        public static messagesFragment newInstance(int sectionNumber) {
-            messagesFragment fragment = new messagesFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-
-        public messagesFragment() {
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_student_task_messages, container, false);
-            return rootView;
-        }
-    }
 
     public static class mainFragment extends ListFragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
