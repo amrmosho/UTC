@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.escapes.utc.R;
 import com.escapes.utc.libs.serverOperations;
+import com.escapes.utc.options.CustomListAdapter;
+import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
 import com.escapes.utc.users.student.mytaskes;
 
@@ -79,6 +81,14 @@ public class superHome extends ActionBarActivity {
 
 
 
+
+
+    String me = "tasks";
+    void updateList() {
+        user.getData(me, "'");
+
+
+    }
 
     public void taskesSButtonClick(View view) {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

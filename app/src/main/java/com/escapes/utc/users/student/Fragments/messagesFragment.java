@@ -69,9 +69,10 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
     String tid = "";
     LayoutInflater inf;
 
+
+
     void updateList() {
         user.getData(me, "task_id='" + tid + "'");
-
 
         ArrayList<ListItem> listData = u.getListData(user.messagesList);
         lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
