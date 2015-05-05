@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.escapes.utc.R;
+import com.escapes.utc.options.user;
+
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
@@ -97,28 +99,53 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
+
+
+
+
+        if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+
+            mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                    getActionBar().getThemedContext(),
+
+
+                    android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
+                    "Taskes",
+                    "Todolist",
+                    "Messages",
+                    "Meetings",
+                    "Reportes","Back TO Home","Exit"
+
+            }));
+
+        }else{
+
+            mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                    getActionBar().getThemedContext(),
+
+
+                    android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
+                    "Taskes",
+                    "Evaloation",
+                    "Messages",
+                    "Meetings",
+                    "Reportes",
+                    "Back TO Home"
+                    ,"Exit"
+
+            }));
+
+
+        }
 
 
 
 
 
-                android.R.id.text1,
 
 
 
-
-
-                new String[]{
-                        "Taskes",
-                        "Todolist",
-                        "Messages",
-                        "Meetings",
-                        "Reportes"
-
-                }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }

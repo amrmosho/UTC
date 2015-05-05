@@ -1,0 +1,78 @@
+package com.escapes.utc.users.student.Fragments;
+
+import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.escapes.utc.libs.uitls;
+import com.escapes.utc.options.CustomListAdapter;
+import com.escapes.utc.options.ListItem;
+import com.escapes.utc.options.user;
+
+import java.util.ArrayList;
+
+/**
+ * Created by empcl_000 on 05/05/2015.
+ */
+public  class mainFragment extends ListFragment {
+
+
+    String me = "tasks";
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
+    public static mainFragment newInstance(int sectionNumber) {
+        mainFragment fragment = new mainFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public mainFragment() {
+    }
+
+    uitls u = new uitls();
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        user.act_taske = user.taskesList.get(position).get("id");
+
+        v.setSelected(true);
+    }
+
+
+    void UpdateTitle(String title){
+
+/*
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);*/
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        String w = "";
+
+        if (user.data.get("logintype").equalsIgnoreCase("student")) {
+            w = "supervisor_id='" + user.data.get("id") + "'";
+            UpdateTitle("Lgoin");
+        } else {
+            w = "(users_group_id='" + user.data.get("group") + "') and (status=3 or status=5 or status=6)";
+            UpdateTitle("Lgoin");
+        }
+        user.getData(me, w);
+
+        ArrayList<ListItem> listData = u.getListData(user.taskesList);
+        setListAdapter(new CustomListAdapter(inflater.getContext(), listData));
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+
+}

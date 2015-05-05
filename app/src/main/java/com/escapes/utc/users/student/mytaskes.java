@@ -1,5 +1,6 @@
 package com.escapes.utc.users.student;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,11 +17,14 @@ import android.widget.ListView;
 import android.widget.TabHost;
 
 import com.escapes.utc.R;
+import com.escapes.utc.home;
 import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
+import com.escapes.utc.users.lgoin;
 import com.escapes.utc.users.student.Fragments.*;
+import com.escapes.utc.users.superHome;
 
 import java.util.ArrayList;
 
@@ -97,6 +101,35 @@ public class mytaskes extends ActionBarActivity
                         .replace(R.id.container, reportFragment.newInstance(position + 1))
                         .commit();
                 break;
+            case 5:
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, reportFragment.newInstance(position + 1))
+                        .commit();
+
+
+                if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+
+                    Intent i = new Intent(mytaskes.this, home.class);
+                    startActivity(i);
+
+                }else{
+
+
+                    Intent i = new Intent(mytaskes.this, superHome.class);
+                    startActivity(i);
+                }
+
+                break;
+            case 6:
+
+
+                Intent i = new Intent(mytaskes.this, lgoin.class);
+
+                user.allDataClear();
+                startActivity(i);
+                break;
         }
 
 
@@ -124,6 +157,9 @@ public class mytaskes extends ActionBarActivity
         }
 
 
+
+
+        restoreActionBar();
     }
 
     public void restoreActionBar() {
@@ -147,6 +183,10 @@ public class mytaskes extends ActionBarActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -162,41 +202,6 @@ public class mytaskes extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
-    public static class mainFragment extends ListFragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static mainFragment newInstance(int sectionNumber) {
-            mainFragment fragment = new mainFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public mainFragment() {
-        }
-
-        uitls u=new uitls();
-        @Override
-        public void onListItemClick(ListView l, View v, int position, long id) {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            ArrayList<ListItem> listData = u.getListData(user.taskesList);
-            setListAdapter(new CustomListAdapter(inflater.getContext(), listData));
-            return super.onCreateView(inflater, container, savedInstanceState);
-        }
-
-
-
-    }
 
 
 }

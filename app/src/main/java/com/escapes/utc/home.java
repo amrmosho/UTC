@@ -109,19 +109,9 @@ public class home extends ActionBarActivity {
     }
 
     public void taskesButtonClick(View view) {
-        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("group", user.data.get("group")));
-        nameValuePairs.add(new BasicNameValuePair("logintype",user.data.get("logintype")));
-        nameValuePairs.add(new BasicNameValuePair("status", "tasks"));
-        String r = serverOperations.sendToServer(nameValuePairs);
-        if (r.trim().equalsIgnoreCase("-1")) {
-            Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
-            t.show();
-        } else {
-            user.fillTaskesData(r);
 
             Intent i = new Intent(home.this, mytaskes.class);
             startActivity(i);
         }
-    }
+
 }

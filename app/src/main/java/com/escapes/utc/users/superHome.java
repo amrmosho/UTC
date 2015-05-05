@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.escapes.utc.R;
 import com.escapes.utc.libs.serverOperations;
+import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
@@ -42,7 +47,16 @@ public class superHome extends ActionBarActivity {
 
         UpdateTitle("Supervisor Home");
 
-        //bt_super_exit
+        TextView in = (TextView) findViewById(R.id.super_info);
+
+        in.setText(user.data.get("title"));
+
+
+        RotateAnimation rotate = (RotateAnimation) AnimationUtils.loadAnimation(this, R.anim.rotate);
+        in.setAnimation(rotate);
+        uitls u = new uitls();
+        ImageView mImgView1 = (ImageView) findViewById(R.id.super_img);
+        mImgView1.setImageBitmap(u.getRoundedShape(u.getImageFromUrl(user.data.get("Image"))));
 
     }
 
@@ -83,27 +97,11 @@ public class superHome extends ActionBarActivity {
 
 
 
-    String me = "tasks";
-    void updateList() {
-        user.getData(me, "'");
-
-
-    }
 
     public void taskesSButtonClick(View view) {
-        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("group", user.data.get("id")));
-        nameValuePairs.add(new BasicNameValuePair("logintype", user.data.get("logintype")));
-        nameValuePairs.add(new BasicNameValuePair("status", "tasks"));
-        String r = serverOperations.sendToServer(nameValuePairs);
-        if (r.trim().equalsIgnoreCase("-1")) {
-            Toast t = Toast.makeText(this, "Username & password errors :( ", Toast.LENGTH_LONG);
-            t.show();
-        } else {
-            user.fillTaskesData(r);
 
             Intent i = new Intent(superHome.this, mytaskes.class);
             startActivity(i);
-        }
+
     }
 }
