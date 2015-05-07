@@ -91,10 +91,7 @@ void UpdateTitle(String title){
 
         EditText txt_username = (EditText) findViewById(R.id.txt_login_uaername);
         EditText txt_password = (EditText) findViewById(R.id.txt_lgoin_password);
-   /*     txt_username.setText("amrmosho");
-        txt_password.setText("3mrmosho");
 
-*/
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 

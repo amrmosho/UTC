@@ -271,6 +271,9 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
 
+                    m.put("user_type", user.data.get("logintype"));
+                    m.put("users_id", user.data.get("id"));
+                    m.put("task_id", user.act_taske);
                     m.put("title", t_config_title.getText().toString());
                     m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
@@ -337,6 +340,7 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
                 @Override
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
+
 
                     m.put("title", t_config_title.getText().toString());
                     m.put("date", t_config_date.getText().toString());

@@ -127,10 +127,29 @@ public class uitls {
         for (Map<String, String> m : taskesList) {
             ListItem newsData = new ListItem();
 
-
             newsData.setHeadline(m.get("title"));
             newsData.setListDes(m.get("dec"));
             newsData.setId(m.get("id"));
+            //newsData.setUrl(m.get("image"));
+            //newsData.setDate(m.get("date"));
+            listMockData.add(newsData);
+
+
+        }
+        return listMockData;
+    }
+
+
+
+
+    public ArrayList<ListItem> getListData(List<Map<String, String>> taskesList,String headLine,String dec ,String ID) {
+        ArrayList<ListItem> listMockData = new ArrayList<ListItem>();
+        for (Map<String, String> m : taskesList) {
+            ListItem newsData = new ListItem();
+
+            newsData.setHeadline(m.get(headLine));
+            newsData.setListDes(m.get(dec));
+            newsData.setId(m.get(ID));
             //newsData.setUrl(m.get("image"));
             //newsData.setDate(m.get("date"));
             listMockData.add(newsData);

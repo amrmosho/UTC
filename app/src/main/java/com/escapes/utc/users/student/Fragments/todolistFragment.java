@@ -86,10 +86,6 @@ public class todolistFragment extends Fragment implements DialogClickListener {
                     @Override
                     public void onClick(View view) {
 
-
-
-
-
                         DialogFragment newFragment = addFragment.newInstance();
 
                         newFragment.setTargetFragment(todolistFragment.this, 0);

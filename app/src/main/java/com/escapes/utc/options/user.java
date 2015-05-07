@@ -29,13 +29,14 @@ public class user {
     public static List<Map<String, String>> meetingsList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> todoList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> marksList = new ArrayList<Map<String, String>>();
 
 
-    public static String act_taske = "9";
+    public static String act_mark = "";
+    public static String act_taske = "";
     public static String act_todo = "";
     public static String act_message = "";
     public static String act_meetings = "";
-
     public static String act_report = "";
 
     public static void addUserData(String Data) {
@@ -63,7 +64,7 @@ public class user {
 
 
     public static List<Map<String, String>> fillListData(String Data) {
-        Log.d("mytest", Data);
+        //    Log.d("mytest", Data);
 
         List<Map<String, String>> r = new ArrayList<Map<String, String>>();
 
@@ -91,8 +92,6 @@ public class user {
     }
 
 
-
-
     public static Map getTaskByid(String id) {
         Map<String, String> tmap = new HashMap<String, String>();
         for (Map<String, String> m : user.taskesList) {
@@ -110,18 +109,12 @@ public class user {
 
     }
 
-    public static Map geDataByid(String id,List<Map<String, String>> liat) {
+    public static Map geDataByid(String id, List<Map<String, String>> liat) {
         Map<String, String> tmap = new HashMap<String, String>();
-
-
-
         for (Map<String, String> m : liat) {
-
             if (m.get("id") != null) {
                 if (m.get("id").equals(id)) {
-
                     tmap = m;
-
                 }
             }
 
@@ -131,9 +124,23 @@ public class user {
     }
 
 
+    public static int gePostionByid(String id, List<Map<String, String>> liat) {
+        int tmap = -1;
+        int i = 0;
+        for (Map<String, String> m : liat) {
 
 
+            if (m.get("id") != null) {
+                if (m.get("id").equals(id)) {
+                    tmap = i;
+                }
+            }
+            i++;
 
+        }
+        return tmap;
+
+    }
 
 
     public static void fillTaskesData(String Data) {
@@ -143,34 +150,39 @@ public class user {
     }
 
 
+    public static Map getDataByID(String id, String Type) {
 
-
-    public static Map  getDataByID(String id,String Type) {
-
-        Map<String, String>  r;
+        Map<String, String> r;
         switch (Type) {
             case "task_messages"
                     :
-                r=geDataByid(id,messagesList);
+                r = geDataByid(id, messagesList);
                 break;
 
             case "task_meetings"
                     :
-                r=geDataByid(id, meetingsList);
+                r = geDataByid(id, meetingsList);
 
                 break;
 
             case "task_todolist"
                     :
-                r=geDataByid(id, todoList);
+                r = geDataByid(id, todoList);
                 break;
             case "task_requests"
                     :
-                r=geDataByid(id, reportsList);
+                r = geDataByid(id, reportsList);
                 break;
 
+
+            case "marks"
+                    :
+                r = geDataByid(id, marksList);
+                break;
+
+
             default:
-                r=geDataByid(id, taskesList);
+                r = geDataByid(id, taskesList);
 
                 break;
         }
@@ -178,6 +190,7 @@ public class user {
         return r;
 
     }
+
     public static void fillListData(String Data, String Type) {
         switch (Type) {
             case "task_messages"
@@ -203,6 +216,13 @@ public class user {
                 reportsList = fillListData(Data);
                 break;
 
+
+            case "marks"
+                    :
+                marksList = fillListData(Data);
+                break;
+
+
             default:
                 taskesList = fillListData(Data);
 
@@ -216,12 +236,7 @@ public class user {
         taskesList.clear();
 
 
-
-
-
-
     }
-
 
 
     public static String getStatus(String id) {
@@ -255,8 +270,7 @@ public class user {
     }
 
 
-
-    public static void allDataClear(){
+    public static void allDataClear() {
 
         taskesList.clear();
         data.clear();
@@ -268,12 +282,13 @@ public class user {
         reportsList.clear();
 
 
-      act_message="";
+        act_message = "";
 
-act_todo="";
-        act_report="";
-        act_taske="";
+        act_todo = "";
+        act_report = "";
+        act_taske = "";
     }
+
     public static String getData(String Type, String Where) {
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();

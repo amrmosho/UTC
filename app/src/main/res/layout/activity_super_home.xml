@@ -78,7 +78,9 @@
             android:src="@drawable/bt_icone_reports"
             android:layout_row="0"
             android:layout_column="1"
+            android:onClick="reportsBtClick"
             android:backgroundTintMode="screen"
+
             android:scaleType="fitCenter" />
 
         <ImageButton
@@ -88,6 +90,8 @@
             android:src="@drawable/bt_icone_evaloation"
             android:layout_row="0"
             android:layout_column="2"
+            android:onClick="marksBtClick"
+
             android:backgroundTintMode="screen"
             android:scaleType="fitCenter" />
 
@@ -98,6 +102,8 @@
             android:src="@drawable/bt_icone_messages"
             android:layout_row="1"
             android:layout_column="0"
+            android:onClick="messageBtClick"
+
             android:backgroundTintMode="screen"
             android:scaleType="fitCenter" />
 
@@ -107,6 +113,7 @@
             android:id="@+id/imageButton6"
             android:src="@drawable/bt_icone_meetings"
             android:backgroundTintMode="screen"
+            android:onClick="adsBtClick"
             android:scaleType="fitCenter" />
 
         <ImageButton

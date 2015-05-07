@@ -40,7 +40,7 @@ public class mytaskes extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
+    String show_status="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +54,49 @@ public class mytaskes extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+
+
     }
+
+
 
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+
+
+        show_status = getIntent().getStringExtra("showStatus");
+            switch (show_status) {
+
+                case "reports":
+                    position=4;
+
+                    break;
+                case "marks":
+
+                    position=5;
+
+
+                    break;
+                case "messages":
+                    position=2;
+
+                    break;
+                case "ads":
+                    position=3;
+
+                    break;
+
+
+            }
+
+        getIntent().removeExtra("showStatus");
+        show_status="";
 
 
         switch (position) {

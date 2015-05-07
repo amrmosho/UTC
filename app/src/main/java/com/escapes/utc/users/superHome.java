@@ -1,15 +1,20 @@
 package com.escapes.utc.users;
 
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,11 +102,88 @@ public class superHome extends ActionBarActivity {
 
 
 
+    public void taskesButtonClick(View view) {
 
-    public void taskesSButtonClick(View view) {
+        Intent i = new Intent(superHome.this, mytaskes.class);
+        startActivity(i);
+    }
 
-            Intent i = new Intent(superHome.this, mytaskes.class);
+    public void reportsBtClick(View view) {
+        DialogFragment newFragment = taskes_list.newInstance("reports");
+        newFragment.show(getSupportFragmentManager(), "dialog");
+    }
+
+    public void marksBtClick(View view) {
+
+        DialogFragment newFragment = taskes_list.newInstance("marks");
+        newFragment.show(getSupportFragmentManager(), "dialog");
+    }
+
+    public void messageBtClick(View view) {
+        DialogFragment newFragment = taskes_list.newInstance("messages");
+        newFragment.show(getSupportFragmentManager(), "dialog");
+
+    }
+
+    public void adsBtClick(View view) {
+        DialogFragment newFragment = taskes_list.newInstance("ads");
+        newFragment.show(getSupportFragmentManager(), "dialog");
+    }
+
+
+    public static class taskes_list extends DialogFragment {
+        String me = "tasks";
+        uitls u = new uitls();
+
+        static   String movie_status="";
+        static taskes_list newInstance(String status) {
+            taskes_list.movie_status=status;
+            return new taskes_list();
+        }
+
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            final View v = inflater.inflate(R.layout.taskes_list, container, false);
+
+            String w;
+            if (user.taskesList.size() == 0) {
+
+                if (user.data.get("logintype").equalsIgnoreCase("student")) {
+                    w = "supervisor_id='" + user.data.get("id") + "'";
+                } else {
+                    w = "(users_group_id='" + user.data.get("group") + "') and (status=3 or status=5 or status=6)";
+                }
+                user.getData(me, w);
+            }
+
+            ListView tsk_list = (ListView) v.findViewById(R.id.taske_list);
+            ArrayList<ListItem> listData = u.getListData(user.taskesList);
+            tsk_list.setAdapter(new CustomListAdapter(v.getContext(), listData));
+            tsk_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    user.act_taske = user.taskesList.get(position).get("id");
+
+                    view.setSelected(true);
+                    gotoi(v);
+
+                }
+            });
+
+            return v;
+
+
+        }
+        public void gotoi( View v) {
+            Intent i = new Intent(v.getContext(),mytaskes.class);
+            i.putExtra("showStatus", movie_status);
             startActivity(i);
+
+        }
 
     }
 }

@@ -31,20 +31,19 @@ import java.util.Map;
  */
 
 
-
 interface DialogClickListenerm {
     public void onYesClick();
+
     public void onNoClick();
 }
 
 
-
-
-public  class meetingsFragment extends Fragment  implements DialogClickListener {
+public class meetingsFragment extends Fragment implements DialogClickListener {
 
 
     ///////////////////////////////////
     private static final String ARG_SECTION_NUMBER = "section_number";
+
     public static meetingsFragment newInstance(int sectionNumber) {
         meetingsFragment fragment = new meetingsFragment();
         Bundle args = new Bundle();
@@ -59,12 +58,10 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
 ///////////////////////////////////////////
 
 
-
-
-
 //c
 
-    String me="task_meetings";
+    String me = "task_meetings";
+
     @Override
     public void onYesClick() {
 
@@ -82,16 +79,17 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
     LayoutInflater inf;
 
     void updateList() {
-        user.getData(me, "task_id='" + tid + "'");
 
+     //   if (user.meetingsList.size()==0){
+            user.getData(me, "task_id='" + tid + "'");
 
+       // }
         ArrayList<ListItem> listData = u.getListData(user.meetingsList);
         lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
 
     }
 
 //c
-
 
 
     @Override
@@ -101,14 +99,10 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
 
         inf = inflater;
         View rootView = inf.inflate(R.layout.fragment_student_task_meetings, container, false);
-        tid =user.act_taske;
-
-
-
+        tid = user.act_taske;
 
 
         //////Bar Actions
-
 
 
         ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.g_addbt);
@@ -116,9 +110,6 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-
-
 
 
                         DialogFragment newFragment = addFragment.newInstance();
@@ -157,7 +148,6 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
                     public void onClick(View view) {
 
 
-
                         new AlertDialog.Builder(inf.getContext())
                                 .setTitle("Delete Item")
                                 .setMessage("Do you really Delete Item?")
@@ -170,7 +160,8 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
 
                                         user.set_delete(me, "id='" + user.act_meetings + "'");
                                         updateList();
-                                    }})
+                                    }
+                                })
                                 .setNegativeButton(android.R.string.no, null).show();
 
 
@@ -235,24 +226,8 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
         todo_tDes.setText((String) m.get("dec") + "\n" + (String) m.get("requests"));
 
 
-
-
-
-
-
-
-
-
         return rootView;
     }
-
-
-
-
-
-
-
-
 
 
     /**
@@ -261,8 +236,7 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
     public static class addFragment extends DialogFragment {
 
 
-        String me="task_meetings";
-
+        String me = "task_meetings";
 
 
         @Override
@@ -307,6 +281,13 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
 
+
+                    m.put("user_type", user.data.get("logintype"));
+                    m.put("users_id", user.data.get("id"));
+                    m.put("task_id", user.act_taske);
+
+
+
                     m.put("title", t_config_title.getText().toString());
                     m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
@@ -327,8 +308,7 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
     public static class editFragment extends DialogFragment {
 
 
-
-        String me="task_meetings";
+        String me = "task_meetings";
 
         static editFragment newInstance() {
             return new editFragment();
@@ -391,9 +371,6 @@ public  class meetingsFragment extends Fragment  implements DialogClickListener 
 
         }
     }
-
-
-
 
 
 }

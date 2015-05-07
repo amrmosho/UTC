@@ -73,6 +73,7 @@ import java.util.Map;
     ListView lw;
     String tid = "";
     LayoutInflater inf;
+    ListView mlw;
 
     void updateList() {
         user.getData(me, "task_id='" + tid + "'");
@@ -83,6 +84,15 @@ import java.util.Map;
 
     }
 
+
+
+
+    void marksUpdateList() {
+        user.getData("marks", "task_id='" + tid + "'");
+        ArrayList<ListItem> listData = u.getListData(user.marksList,"report_id","dec","id");
+        mlw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
+
+    }
 //c
 
 
@@ -103,7 +113,7 @@ import java.util.Map;
 
         //////Bar Actions
 
-
+/*
         ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.r_addbt);
         t_addbt.setOnClickListener(
                 new View.OnClickListener() {
@@ -167,7 +177,7 @@ import java.util.Map;
                     }
                 }
         );
-
+*/
 
         //////BarActions
 
@@ -192,6 +202,26 @@ import java.util.Map;
 
         updateList();
 
+          mlw = (ListView) rootView.findViewById(R.id.marksList);
+
+marksUpdateList();
+        mlw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+              user.act_mark = user.marksList.get(position).get("id");
+
+                view.setSelected(true);
+
+
+            }
+        });
+
+
+
+
+
+
         //////ListViwe
 
 
@@ -203,10 +233,19 @@ import java.util.Map;
         th.addTab(tc);
 
 
-        tc = th.newTabSpec("tab3");
+        tc = th.newTabSpec("tab2");
         tc.setIndicator("Reports");
         tc.setContent(R.id.student_r_tab_data);
         th.addTab(tc);
+
+
+        tc = th.newTabSpec("tab3");
+        tc.setIndicator("Marks");
+        tc.setContent(R.id.student_r_tab_marks);
+        th.addTab(tc);
+
+
+//marksList
 
 
         TextView todo_tTitle = (TextView) rootView.findViewById(R.id.r_tTitle);
@@ -229,9 +268,7 @@ import java.util.Map;
     }
 
 
-    /**
-     * TabListener for messages
-     */
+   /*
     public static class addFragment extends DialogFragment {
 
 
@@ -286,7 +323,7 @@ import java.util.Map;
 
                     user.set_insert(me, m);
                     getDialog().dismiss();
-                    callback.onYesClick();*/
+                    callback.onYesClick();
 
 
                 }
@@ -362,7 +399,7 @@ import java.util.Map;
 
 
         }
-    }
+    }*/
 
 
 }

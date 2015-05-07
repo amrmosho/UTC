@@ -35,7 +35,6 @@ public  class mainFragment extends ListFragment {
     public mainFragment() {
     }
 
-    uitls u = new uitls();
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -44,33 +43,69 @@ public  class mainFragment extends ListFragment {
         v.setSelected(true);
     }
 
+    uitls u = new uitls();
 
-    void UpdateTitle(String title){
+
+    @Override
+    public void onStart() {
+
+
+        int s=1;
+        if (   user.act_taske==""){
+            user.act_taske = user.taskesList.get(0).get("id");
+
+        }
+
+
+
+
+
+        final int p=   user.gePostionByid(  user.act_taske, user.taskesList);
+        final ListView listView=getListView();
 
 /*
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(title);*/
+        listView.requestFocusFromTouch();
+        listView.setSelection(p);
+        listView.requestFocus();*/
+
+        getListView().post(new Runnable() {
+
+            @Override
+            public void run() {
+         //      getListView().get
+
+                getListView().setSelection(p);
+            getListView().clearFocus();
+
+            }
+        });
+        super.onStart();
     }
+
+
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         String w = "";
+        if (user.taskesList.size()==0){
+
 
         if (user.data.get("logintype").equalsIgnoreCase("student")) {
             w = "supervisor_id='" + user.data.get("id") + "'";
-            UpdateTitle("Lgoin");
         } else {
             w = "(users_group_id='" + user.data.get("group") + "') and (status=3 or status=5 or status=6)";
-            UpdateTitle("Lgoin");
         }
         user.getData(me, w);
-
+        }
         ArrayList<ListItem> listData = u.getListData(user.taskesList);
         setListAdapter(new CustomListAdapter(inflater.getContext(), listData));
+
+
+
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
