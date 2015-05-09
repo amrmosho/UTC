@@ -31,7 +31,7 @@ import java.util.Map;
  */
 
 
-interface DialogClickListenerm {
+interface DialogClickListener {
     public void onYesClick();
 
     public void onNoClick();

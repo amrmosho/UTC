@@ -27,7 +27,7 @@ public class user {
     public static List<Map<String, String>> messagesList = new ArrayList<Map<String, String>>();
 
     public static List<Map<String, String>> meetingsList = new ArrayList<Map<String, String>>();
-    public static List<Map<String, String>> todoList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> evaloation = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> marksList = new ArrayList<Map<String, String>>();
 
@@ -165,9 +165,9 @@ public class user {
 
                 break;
 
-            case "task_todolist"
+            case "evaloation"
                     :
-                r = geDataByid(id, todoList);
+                r = geDataByid(id, evaloation);
                 break;
             case "task_requests"
                     :
@@ -207,9 +207,9 @@ public class user {
 
                 break;
 
-            case "task_todolist"
+            case "evaloation"
                     :
-                todoList = fillListData(Data);
+                evaloation = fillListData(Data);
                 break;
             case "task_requests"
                     :
@@ -278,7 +278,7 @@ public class user {
 
         messagesList.clear();
         meetingsList.clear();
-        todoList.clear();
+        evaloation.clear();
         reportsList.clear();
 
 

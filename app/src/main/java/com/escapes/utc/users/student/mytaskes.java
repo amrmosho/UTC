@@ -2,31 +2,19 @@ package com.escapes.utc.users.student;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TabHost;
 
 import com.escapes.utc.R;
 import com.escapes.utc.home;
-import com.escapes.utc.libs.uitls;
-import com.escapes.utc.options.CustomListAdapter;
-import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
 import com.escapes.utc.users.lgoin;
 import com.escapes.utc.users.student.Fragments.*;
 import com.escapes.utc.users.superHome;
-
-import java.util.ArrayList;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -74,6 +62,10 @@ public class mytaskes extends ActionBarActivity
             show_status = getIntent().getStringExtra("showStatus");
             switch (show_status) {
 
+                case "evaloation":
+                    position = 1;
+                    break;
+
                 case "reports":
                     position = 4;
 
@@ -113,7 +105,7 @@ public class mytaskes extends ActionBarActivity
 
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, todolistFragment.newInstance(position + 1))
+                        .replace(R.id.container, evaloationFragment.newInstance(position + 1))
                         .commit();
 
                 break;

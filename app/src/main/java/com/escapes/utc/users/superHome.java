@@ -24,6 +24,7 @@ import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
+import com.escapes.utc.users.student.Fragments.evaloationFragment;
 import com.escapes.utc.users.student.mytaskes;
 
 import org.apache.http.NameValuePair;
@@ -130,6 +131,12 @@ public class superHome extends ActionBarActivity {
         newFragment.show(getSupportFragmentManager(), "dialog");
     }
 
+    public void evaloationBtClick(View view) {
+
+        Intent i = new Intent(superHome.this,mytaskes.class);
+        i.putExtra("showStatus", "");
+        startActivity(i);
+    }
 
 
     public static class taskes_list extends DialogFragment {
