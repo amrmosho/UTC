@@ -96,7 +96,11 @@ void UpdateTitle(String title){
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
 
+if(txt_password.getText().toString().equalsIgnoreCase("") ||txt_username.getText().toString().equalsIgnoreCase("")){
+    Toast t = Toast.makeText(lgoin.this, "Username & password errors :( ", Toast.LENGTH_LONG);
+    t.show();
 
+}else{
         nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("password", txt_password.getText().toString()));
         nameValuePairs.add(new BasicNameValuePair("status", "setlogin"));
@@ -122,7 +126,7 @@ void UpdateTitle(String title){
 
             }
 
-        }
+        }}
 
     }
 

@@ -24,16 +24,13 @@ public class serverOperations {
 
         String r = "";
 
+
+        try {
         HttpPost httppost = new HttpPost(config.URLServer);
 
 
 
         HttpClient httpclient = new DefaultHttpClient();
-
-
-
-
-        try {
 
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));

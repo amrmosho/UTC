@@ -66,39 +66,40 @@ public class mytaskes extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        if (getIntent().hasExtra("showStatus"))
+
+        {
 
 
-
-
-        show_status = getIntent().getStringExtra("showStatus");
+            show_status = getIntent().getStringExtra("showStatus");
             switch (show_status) {
 
                 case "reports":
-                    position=4;
+                    position = 4;
 
                     break;
                 case "marks":
 
-                    position=5;
+                    position = 5;
 
 
                     break;
                 case "messages":
-                    position=2;
+                    position = 2;
 
                     break;
                 case "ads":
-                    position=3;
+                    position = 3;
 
                     break;
 
 
             }
 
-        getIntent().removeExtra("showStatus");
-        show_status="";
+            getIntent().removeExtra("showStatus");
+            show_status = "";
 
-
+        }
         switch (position) {
 
             case 0:
@@ -236,7 +237,7 @@ public class mytaskes extends ActionBarActivity
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+               return super.onOptionsItemSelected(item);
     }
 
 
