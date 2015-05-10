@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/st_img"
+            android:layout_margin="10dp">
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Email"
+                android:id="@+id/textView28"
+                android:layout_below="@+id/st_title"
+                android:layout_alignLeft="@+id/st_title"
+                android:layout_alignStart="@+id/st_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="st_email"
+                android:id="@+id/st_email"
+                android:layout_weight="0.12"
+                android:layout_below="@+id/textView28"
+                android:layout_alignLeft="@+id/textView28"
+                android:layout_alignStart="@+id/textView28" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Group"
+                android:id="@+id/textView27"
+                android:layout_below="@+id/st_group"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_group"
+                android:id="@+id/st_group" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Age"
+                android:id="@+id/textView26"
+                android:layout_below="@+id/st_img"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_age"
+                android:id="@+id/st_age" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Street"
+                android:id="@+id/textView23"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_street"
+                android:id="@+id/st_street" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="City"
+                android:id="@+id/textView30"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_city"
+                android:id="@+id/st_city" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="State"
+                android:id="@+id/textView31"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_state"
+                android:id="@+id/st_state" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Accadmic Year"
+                android:id="@+id/textView32"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="st_year"
+                android:id="@+id/st_year" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/st_img"
+            android:src="@drawable/no_photo"
+            android:layout_weight="0.12"
+            android:backgroundTint="#ccc"
+            android:background="#ccc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="st_title"
+            android:id="@+id/st_title"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.12"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/st_img"
+            android:layout_toEndOf="@+id/st_img"
+            android:layout_margin="5dp" />
+
+    </RelativeLayout>
+</LinearLayout>

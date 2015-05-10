@@ -30,7 +30,9 @@ public class user {
     public static List<Map<String, String>> evaloation = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> marksList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> studentesList = new ArrayList<Map<String, String>>();
 
+    public static String act_student = "";
 
     public static String act_mark = "";
     public static String act_taske = "";
@@ -69,7 +71,7 @@ public class user {
         List<Map<String, String>> r = new ArrayList<Map<String, String>>();
 
 
-        String[] rows = Data.split("@");
+        String[] rows = Data.split("#");
         int rownum = 0;
         for (String row : rows) {
             String[] ds = row.split(";");
@@ -181,6 +183,15 @@ public class user {
                 break;
 
 
+
+            case "studentes"
+                    :
+                r = geDataByid(id, studentesList);
+                break;
+
+
+
+
             default:
                 r = geDataByid(id, taskesList);
 
@@ -221,6 +232,13 @@ public class user {
                     :
                 marksList = fillListData(Data);
                 break;
+
+            case "studentes"
+                    :
+                studentesList = fillListData(Data);
+                break;
+
+
 
 
             default:
@@ -292,7 +310,7 @@ public class user {
     public static String getData(String Type, String Where) {
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("Where", Where));
+        nameValuePairs.add(new BasicNameValuePair("where", Where));
 
         nameValuePairs.add(new BasicNameValuePair("table", Type));
         nameValuePairs.add(new BasicNameValuePair("status", "fillData"));

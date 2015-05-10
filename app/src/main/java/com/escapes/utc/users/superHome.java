@@ -1,10 +1,10 @@
 package com.escapes.utc.users;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,19 +16,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.escapes.utc.R;
-import com.escapes.utc.libs.serverOperations;
 import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
-import com.escapes.utc.users.student.Fragments.evaloationFragment;
 import com.escapes.utc.users.student.mytaskes;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 
@@ -134,7 +128,7 @@ public class superHome extends ActionBarActivity {
     public void evaloationBtClick(View view) {
 
         Intent i = new Intent(superHome.this,mytaskes.class);
-        i.putExtra("showStatus", "");
+        i.putExtra("showStatus", "evaloation");
         startActivity(i);
     }
 

@@ -113,6 +113,7 @@ if(txt_password.getText().toString().equalsIgnoreCase("") ||txt_username.getText
             t.show();
         } else {
             user.addUserData(r);
+try {
 
             if (user.data.get("logintype").equalsIgnoreCase("student")){
 
@@ -126,6 +127,12 @@ if(txt_password.getText().toString().equalsIgnoreCase("") ||txt_username.getText
 
             }
 
+}catch (Exception e){
+    Toast t = Toast.makeText(lgoin.this, "Error :(  "+r , Toast.LENGTH_LONG);
+    t.show();
+
+
+}
         }}
 
     }
