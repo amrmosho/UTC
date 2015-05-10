@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.escapes.utc.R;
 import com.escapes.utc.options.user;
+import com.escapes.utc.users.tSuperHome;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -112,29 +113,50 @@ public class NavigationDrawerFragment extends Fragment {
 
                     android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
                     "Taskes",
-                    "Todolist",
                     "Messages",
-                    "Meetings",
-                    "Reportes","Back TO Home","Exit"
+                    "Reports",
+                    "Marks",
+                    "ADS"
+                    ,"Back TO Home"
+                    ,"Exit"
 
             }));
 
         }else{
+            if (user.data.get("group").equalsIgnoreCase("2")) {
 
-            mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                    getActionBar().getThemedContext(),
+                mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                        getActionBar().getThemedContext(),
+                        android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
+                        "Taskes",
+                        "Student Messages",
+                        "admin messages",
+                        "Marks",
+                        "Evaloation",
+                        "ADS",
+                        "Back TO Home"
+                        ,"Exit"
+
+                }));
+            } else {
+
+                mDrawerListView.setAdapter(new ArrayAdapter<String>(
+                        getActionBar().getThemedContext(),
+                        android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
+                        "admin messages",
+                        "finale marks",
+                        "Evaloation",
+                        "ADS",
+                        "Back TO Home"
+                        ,"Exit"
+
+                }));
+            }
 
 
-                    android.R.layout.simple_list_item_activated_1,android.R.id.text1, new String[]{
-                    "Taskes",
-                    "Evaloation",
-                    "Messages",
-                    "Meetings",
-                    "Reportes",
-                    "Back TO Home"
-                    ,"Exit"
 
-            }));
+
+
 
 
         }

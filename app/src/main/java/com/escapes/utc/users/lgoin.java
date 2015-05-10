@@ -25,24 +25,21 @@ import java.util.ArrayList;
 public class lgoin extends ActionBarActivity {
 
 
-
-void UpdateTitle(String title){
-
-
-    ActionBar actionBar = getSupportActionBar();
-    actionBar.setDisplayShowTitleEnabled(true);
-    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-    actionBar.setTitle(title);
-}
+    void UpdateTitle(String title) {
 
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);
+    }
 
-//
+
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lgoin);
-
 
 
         UpdateTitle("Lgoin");
@@ -56,7 +53,6 @@ void UpdateTitle(String title){
 
         Button bt_login = (Button) findViewById(R.id.bt_login_send);
         Button bt_create = (Button) findViewById(R.id.bt_lgoin_create);
-
 
 
         bt_login.setOnClickListener(
@@ -80,9 +76,6 @@ void UpdateTitle(String title){
         );
 
 
-
-
-
     }
 
 
@@ -96,53 +89,54 @@ void UpdateTitle(String title){
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 
 
-if(txt_password.getText().toString().equalsIgnoreCase("") ||txt_username.getText().toString().equalsIgnoreCase("")){
-    Toast t = Toast.makeText(lgoin.this, "Username & password errors :( ", Toast.LENGTH_LONG);
-    t.show();
-
-}else{
-        nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("password", txt_password.getText().toString()));
-        nameValuePairs.add(new BasicNameValuePair("status", "setlogin"));
-
-        String r = serverOperations.sendToServer(nameValuePairs);
-
-
-        if (r.trim().equalsIgnoreCase("-1")) {
+        if (txt_password.getText().toString().equalsIgnoreCase("") || txt_username.getText().toString().equalsIgnoreCase("")) {
             Toast t = Toast.makeText(lgoin.this, "Username & password errors :( ", Toast.LENGTH_LONG);
             t.show();
+
         } else {
-            user.addUserData(r);
-try {
+            nameValuePairs.add(new BasicNameValuePair("username", txt_username.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("password", txt_password.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("status", "setlogin"));
 
-            if (user.data.get("logintype").equalsIgnoreCase("student")){
+            String r = serverOperations.sendToServer(nameValuePairs);
 
-                Intent i = new Intent(lgoin.this, home.class);
-                startActivity(i);
 
-            }else{
+            if (r.trim().equalsIgnoreCase("-1")) {
+                Toast t = Toast.makeText(lgoin.this, "Username & password errors :( ", Toast.LENGTH_LONG);
+                t.show();
+            } else {
+                user.addUserData(r);
+                try {
 
-                Intent i = new Intent(lgoin.this, superHome.class);
-                startActivity(i);
+                    if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
+                        Intent i = new Intent(lgoin.this, home.class);
+                        startActivity(i);
+
+                    } else {
+                        if (user.data.get("group").equalsIgnoreCase("2")) {
+
+                            Intent i = new Intent(lgoin.this, superHome.class);
+                            startActivity(i);
+                        } else {
+
+                            Intent i = new Intent(lgoin.this, tSuperHome.class);
+                            startActivity(i);
+                        }
+                    }
+
+
+                } catch (Exception e) {
+                    Toast t = Toast.makeText(lgoin.this, "Error :(  " + r+e.getMessage()
+                            , Toast.LENGTH_LONG);
+                    t.show();
+
+
+                }
             }
-
-}catch (Exception e){
-    Toast t = Toast.makeText(lgoin.this, "Error :(  "+r , Toast.LENGTH_LONG);
-    t.show();
-
-
-}
-        }}
+        }
 
     }
-
-
-
-
-
-
-
 
 
     void create(View v) {
@@ -157,7 +151,6 @@ try {
 
 
             startActivity(i);
-
 
 
         } else {

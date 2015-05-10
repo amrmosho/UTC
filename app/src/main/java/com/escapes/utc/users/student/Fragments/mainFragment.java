@@ -74,7 +74,7 @@ public class mainFragment extends ListFragment {
         if (user.taskesList.size() == 0) {
 
 
-            if (user.data.get("logintype").equalsIgnoreCase("student")) {
+            if (!user.data.get("logintype").equalsIgnoreCase("student")) {
                 w = "supervisor_id='" + user.data.get("id") + "'";
             } else {
                 w = "(users_group_id='" + user.data.get("group") + "') and (status=3 or status=5 or status=6)";

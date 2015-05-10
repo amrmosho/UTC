@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/rlayout">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/st_img"
+            android:layout_margin="10dp">
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="status"
+                android:id="@+id/r_status5"
+                android:layout_below="@+id/r_status5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="r_status"
+                android:id="@+id/r_status" />
+
+            <TextView
+                style="@style/labelData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="description"
+                android:id="@+id/textView26"
+                android:layout_below="@+id/st_img"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="r_dec"
+                android:id="@+id/r_dec" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/st_img"
+            android:src="@drawable/no_photo"
+            android:layout_weight="0.12"
+            android:backgroundTint="#ccc"
+            android:background="#ccc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="r_title"
+            android:id="@+id/st_title"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.12"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/st_img"
+            android:layout_toEndOf="@+id/st_img"
+            android:layout_margin="5dp" />
+
+    </RelativeLayout>
+</LinearLayout>

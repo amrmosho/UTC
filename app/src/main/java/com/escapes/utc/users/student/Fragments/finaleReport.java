@@ -25,14 +25,13 @@ import java.util.Map;
  */
 
 
-
-public class evaloationFragment extends Fragment {
+public class finaleReport extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
 
-    public static evaloationFragment newInstance(int sectionNumber) {
-        evaloationFragment fragment = new evaloationFragment();
+    public static finaleReport newInstance(int sectionNumber) {
+        finaleReport fragment = new finaleReport();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -40,7 +39,7 @@ public class evaloationFragment extends Fragment {
     }
 
 
-    public evaloationFragment() {
+    public finaleReport() {
     }
 
 
@@ -62,7 +61,7 @@ public class evaloationFragment extends Fragment {
 
                 DialogFragment newFragment = student_data.newInstance("");
 
-                newFragment.setTargetFragment(evaloationFragment.this, 0);
+                newFragment.setTargetFragment(finaleReport.this, 0);
 
                 newFragment.show(getFragmentManager(), "dialog");
 
@@ -77,22 +76,21 @@ public class evaloationFragment extends Fragment {
 
 
     void updateList() {
-        user.getData("evaloation","1=1");
-        ArrayList<ListItem> listData = u.getListData(user.evaloation,"student_title","value","value");
+        user.getData("finale_report", "1=1");
+        ArrayList<ListItem> listData = u.getListData(user.finale_reportList, "title", "users_title", "users_title");
         lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
 
     }
-
-
 
 
     public static class student_data extends DialogFragment {
         String me = "tasks";
         uitls u = new uitls();
 
-        static   String movie_status="";
+        static String movie_status = "";
+
         static student_data newInstance(String status) {
-            student_data.movie_status=status;
+            student_data.movie_status = status;
             return new student_data();
         }
 
@@ -101,42 +99,21 @@ public class evaloationFragment extends Fragment {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            final View v = inflater.inflate(R.layout.student, container, false);
+            final View v = inflater.inflate(R.layout.dialog_report, container, false);
 
-                user.getData("studentes", "id='" + user.act_student + "'");
-getDialog().setTitle("Student Info");
+            user.getData("finale_repor", "id='" + user.act_finale_report + "'");
+            getDialog().setTitle("Finale Repor Info");
 
-            TextView st_title = (TextView) v.findViewById(R.id.st_title);
-            TextView st_age = (TextView) v.findViewById(R.id.st_age);
-            TextView st_city = (TextView) v.findViewById(R.id.st_city);
-            TextView st_group = (TextView) v.findViewById(R.id.r_status5);
-            TextView st_state = (TextView) v.findViewById(R.id.st_state);
-            TextView st_street = (TextView) v.findViewById(R.id.st_street);
-           TextView st_year = (TextView) v.findViewById(R.id.st_year);
-            TextView st_email = (TextView) v.findViewById(R.id.st_email);
+            TextView r_tTitle = (TextView) v.findViewById(R.id.r_tTitle);
+            TextView r_dec = (TextView) v.findViewById(R.id.r_dec);
+            TextView r_status = (TextView) v.findViewById(R.id.r_status);
 
-            ImageView mImgView1 = (ImageView) v.findViewById(R.id.st_img);
 
-            Map m = user.studentesList.get(0);
+            Map m = user.finale_reportList.get(0);
 
-            st_title.setText((String)m.get("title"));
-
-            st_age.setText((String)m.get("age") );
-            st_city.setText((String)m.get("city"));
-            st_group.setText((String)m.get("group_title"));
-            st_state.setText((String)m.get("state"));
-            st_street.setText((String)m.get("street"));
-
-            st_year.setText((String )m.get("title"));
-
-            st_email.setText((String )m.get("email"));
-if (!m.get("Image").toString().trim().equals("") &&
-
-        !m.get("Image").toString().trim().equals("-")
-
-        ) {
-    mImgView1.setImageBitmap(u.getRoundedShape(u.getImageFromUrl(m.get("Image").toString())));
-}
+            r_tTitle.setText((String) m.get("title"));
+            r_dec.setText((String) m.get("dec"));
+            r_status.setText((String) m.get("status"));
 
 
             return v;
@@ -146,23 +123,6 @@ if (!m.get("Image").toString().trim().equals("") &&
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

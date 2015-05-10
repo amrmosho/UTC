@@ -15,6 +15,7 @@ import com.escapes.utc.options.user;
 import com.escapes.utc.users.lgoin;
 import com.escapes.utc.users.student.Fragments.*;
 import com.escapes.utc.users.superHome;
+import com.escapes.utc.users.tSuperHome;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -60,110 +61,307 @@ public class mytaskes extends ActionBarActivity
 
 
             show_status = getIntent().getStringExtra("showStatus");
-            switch (show_status) {
-
-                case "evaloation":
-                    position = 1;
-                    break;
-
-                case "reports":
-                    position = 4;
-
-                    break;
-                case "marks":
-
-                    position = 5;
 
 
-                    break;
-                case "messages":
-                    position = 2;
-
-                    break;
-                case "ads":
-                    position = 3;
-
-                    break;
 
 
-            }
+            if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+                    switch (show_status) {
+                        case "Taskes":
+                            position = 0;
+                            break;
+                        case "Messages":
+                            position = 1;
+                            break;
+                        case "Reports":
+                            position = 2;
+                            break;
+                        case "Marks":
+                            position = 3;
+                            break;
+                        case "ADS":
+                            position = 4;
+                            break;
+                    }
+
+
+                } else {
+                    if (user.data.get("group").equalsIgnoreCase("2")) {
+
+
+
+                        switch (show_status) {
+                            case "Taskes":
+                                position = 0;
+                                break;
+                            case "StudentMessages":
+                                position = 1;
+                                break;
+                            case "adminMessages":
+                                position = 2;
+                                break;
+                            case "Marks":
+                                position = 3;
+                                break;
+                            case "ads":
+                                position = 4;
+                                break;
+                        }
+
+                    } else {
+
+                        switch (show_status) {
+
+
+                            case "adminMessages":
+                                position = 0;
+                                break;
+                            case "finaleMarks":
+                                position = 1;
+                                break;
+                            case "Evaloation":
+                                position = 2;
+                                break;
+
+                            case "ads":
+                                position = 3;
+                                break;
+                        }
+
+
+                    }
+                }
+
 
             getIntent().removeExtra("showStatus");
             show_status = "";
 
         }
-        switch (position) {
+
+
+        if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+
+
+            switch (position) {
 
             case 0:
-
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
-
                 break;
 
             case 1:
-
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, evaloationFragment.newInstance(position + 1))
-                        .commit();
-
-                break;
-
-            case 2:
-
-
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, messagesFragment.newInstance(position + 1))
                         .commit();
-
+                break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, reportFragment.newInstance(position + 1))
+                        .commit();
                 break;
 
             case 3:
-
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                        .replace(R.id.container, reportFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 4:
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, reportFragment.newInstance(position + 1))
+                        .replace(R.id.container,  reportFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 5:
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, reportFragment.newInstance(position + 1))
+                        .replace(R.id.container, meetingsFragment.newInstance(position + 1))
                         .commit();
 
 
                 if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
-
                     Intent i = new Intent(mytaskes.this, home.class);
                     startActivity(i);
 
-                }else{
+                } else {
+                    if (user.data.get("group").equalsIgnoreCase("2")) {
 
+                        Intent i = new Intent(mytaskes.this, superHome.class);
+                        startActivity(i);
+                    } else {
 
-                    Intent i = new Intent(mytaskes.this, superHome.class);
-                    startActivity(i);
+                        Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                        startActivity(i);
+                    }
                 }
 
                 break;
             case 6:
-
-
                 Intent i = new Intent(mytaskes.this, lgoin.class);
-
                 user.allDataClear();
                 startActivity(i);
                 break;
         }
 
 
-    }
+
+
+        } else {
+            if (user.data.get("group").equalsIgnoreCase("2")) {
+
+
+
+                switch (position) {
+
+                    case 0:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
+                        break;
+
+                    case 1:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, messagesFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+                    case 2:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, messagesFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+
+                    case 3:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, reportFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+                    case 4:
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container,  evaloationFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+                    case 5:
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                                .commit();
+
+
+                        if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+                            Intent i = new Intent(mytaskes.this, home.class);
+                            startActivity(i);
+
+                        } else {
+                            if (user.data.get("group").equalsIgnoreCase("2")) {
+
+                                Intent i = new Intent(mytaskes.this, superHome.class);
+                                startActivity(i);
+                            } else {
+
+                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                                startActivity(i);
+                            }
+                        }
+
+                        break;
+                    case 6:
+                        Intent i = new Intent(mytaskes.this, lgoin.class);
+                        user.allDataClear();
+                        startActivity(i);
+                        break;
+                }
+
+
+            } else {
+
+
+                switch (position) {
+
+                    case 0:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, messagesFragment.newInstance(position + 1)).commit();
+                        break;
+
+                    case 1:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, reportFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+                    case 2:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, evaloationFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+
+                    case 3:
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                                .commit();
+                        break;
+
+                    case 5:
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, reportFragment.newInstance(position + 1))
+                                .commit();
+
+
+                        if (user.data.get("logintype").equalsIgnoreCase("student")) {
+
+                            Intent i = new Intent(mytaskes.this, home.class);
+                            startActivity(i);
+
+                        } else {
+                            if (user.data.get("group").equalsIgnoreCase("2")) {
+
+                                Intent i = new Intent(mytaskes.this, superHome.class);
+                                startActivity(i);
+                            } else {
+
+                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                                startActivity(i);
+                            }
+                        }
+
+                        break;
+                    case 6:
+                        Intent i = new Intent(mytaskes.this, lgoin.class);
+                        user.allDataClear();
+                        startActivity(i);
+                        break;
+                }
+
+
+
+
+            }
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
 
     public void onSectionAttached(int number) {
 

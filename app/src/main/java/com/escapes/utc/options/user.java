@@ -31,6 +31,8 @@ public class user {
     public static List<Map<String, String>> reportsList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> marksList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> studentesList = new ArrayList<Map<String, String>>();
+    public static List<Map<String, String>> finale_reportList = new ArrayList<Map<String, String>>();
+
 
     public static String act_student = "";
 
@@ -40,6 +42,10 @@ public class user {
     public static String act_message = "";
     public static String act_meetings = "";
     public static String act_report = "";
+
+
+    public static String act_finale_report = "";
+
 
     public static void addUserData(String Data) {
         String[] ds = Data.split(";");
@@ -190,6 +196,10 @@ public class user {
                 break;
 
 
+            case "finale_report"
+                    :
+                r = geDataByid(id, finale_reportList);
+                break;
 
 
             default:
@@ -231,6 +241,12 @@ public class user {
             case "marks"
                     :
                 marksList = fillListData(Data);
+                break;
+
+            case "finale_report"
+                    :
+                finale_reportList = fillListData(Data);
+
                 break;
 
             case "studentes"

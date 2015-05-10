@@ -85,7 +85,10 @@
         <activity
             android:name=".users.superHome"
             android:label="@string/title_activity_super_home" >
-        </activity>
+        </activity><activity
+        android:name=".users.tSuperHome"
+        android:label="@string/title_activity_super_home" >
+    </activity>
     </application>
 
 </manifest>
