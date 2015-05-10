@@ -188,11 +188,11 @@ public class mytaskes extends ActionBarActivity
                 } else {
                     if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                        Intent i = new Intent(mytaskes.this, superHome.class);
+                        Intent i = new Intent(mytaskes.this,  tSuperHome.class);
                         startActivity(i);
                     } else {
 
-                        Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                        Intent i = new Intent(mytaskes.this, superHome.class);
                         startActivity(i);
                     }
                 }
@@ -257,11 +257,11 @@ public class mytaskes extends ActionBarActivity
                         } else {
                             if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                                Intent i = new Intent(mytaskes.this, superHome.class);
+                                Intent i = new Intent(mytaskes.this,  tSuperHome.class);
                                 startActivity(i);
                             } else {
 
-                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                                Intent i = new Intent(mytaskes.this, superHome.class);
                                 startActivity(i);
                             }
                         }
@@ -277,17 +277,24 @@ public class mytaskes extends ActionBarActivity
 
             } else {
 
+/*
 
+
+ "admin messages",
+                        "finale marks",
+                        "Evaloation",
+                        "ADS",
+ */
                 switch (position) {
 
                     case 0:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, messagesFragment.newInstance(position + 1)).commit();
+                                .replace(R.id.container, evaloationFragment.newInstance(position + 1)).commit();
                         break;
 
                     case 1:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, reportFragment.newInstance(position + 1))
+                                .replace(R.id.container, finaleReport.newInstance(position + 1))
                                 .commit();
                         break;
                     case 2:
@@ -298,7 +305,7 @@ public class mytaskes extends ActionBarActivity
 
                     case 3:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                                .replace(R.id.container, evaloationFragment.newInstance(position + 1))
                                 .commit();
                         break;
 
@@ -317,11 +324,11 @@ public class mytaskes extends ActionBarActivity
                         } else {
                             if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                                Intent i = new Intent(mytaskes.this, superHome.class);
+                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
                                 startActivity(i);
                             } else {
 
-                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                                Intent i = new Intent(mytaskes.this, superHome.class);
                                 startActivity(i);
                             }
                         }

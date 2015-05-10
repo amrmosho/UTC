@@ -116,11 +116,11 @@ public class lgoin extends ActionBarActivity {
                     } else {
                         if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                            Intent i = new Intent(lgoin.this, superHome.class);
+                            Intent i = new Intent(lgoin.this,  tSuperHome.class);
                             startActivity(i);
                         } else {
 
-                            Intent i = new Intent(lgoin.this, tSuperHome.class);
+                            Intent i = new Intent(lgoin.this, superHome.class);
                             startActivity(i);
                         }
                     }

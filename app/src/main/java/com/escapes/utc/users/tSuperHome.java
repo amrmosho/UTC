@@ -1,6 +1,7 @@
 package com.escapes.utc.users;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
@@ -45,7 +46,7 @@ public class tSuperHome extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_t_super_home);
 
-        UpdateTitle("Supervisor Home");
+        UpdateTitle("Training Home");
 
         TextView in = (TextView) findViewById(R.id.tsuper_info);
 
@@ -56,7 +57,11 @@ public class tSuperHome extends ActionBarActivity {
         in.setAnimation(rotate);
         uitls u = new uitls();
         ImageView mImgView1 = (ImageView) findViewById(R.id.tsuper_img);
-        mImgView1.setImageBitmap(u.getRoundedShape(u.getImageFromUrl(user.data.get("Image"))));
+
+        Bitmap B=u.getRoundedShape(u.getImageFromUrl(user.data.get("Image")));
+        if (B!=null){
+        mImgView1.setImageBitmap(B);
+        }
 
     }
 

@@ -275,6 +275,8 @@ public class user {
 
     public static String getStatus(String id) {
         String r = "";
+
+        if (id!=null){
         switch (id) {
 
             case "1":
@@ -299,7 +301,7 @@ public class user {
                 r = "Verified";
                 break;
 
-        }
+        }}
         return r;
     }
 

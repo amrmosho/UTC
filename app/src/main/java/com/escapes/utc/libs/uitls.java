@@ -27,17 +27,19 @@ import java.util.Map;
 public class uitls {
 
 
+    public Bitmap getImageFromUrl(String imgName) {
+        Bitmap bm =null;
+        if (!imgName.trim().equals("") && !imgName.trim().equals("-")){
 
- public   Bitmap getImageFromUrl(String imgName){
-        String url = config.URLImages+imgName;
+            String url = config.URLImages + imgName;
         BitmapFactory.Options bmOptions;
         bmOptions = new BitmapFactory.Options();
         bmOptions.inSampleSize = 1;
-        Bitmap bm = loadBitmap(url, bmOptions);
-        return bm;
+         bm = loadBitmap(url, bmOptions);
     }
+        return bm;
 
-
+}
 
 
 
@@ -79,9 +81,11 @@ public class uitls {
 
 
     public Bitmap getRoundedShape( Bitmap scaleBitmapImage) {
+        Bitmap targetBitmap=null;
+        if (scaleBitmapImage!=null){
         int targetWidth = 90;
         int targetHeight = 90;
-        Bitmap targetBitmap = Bitmap.createBitmap(targetWidth,targetHeight,Bitmap.Config.ARGB_8888);
+         targetBitmap = Bitmap.createBitmap(targetWidth,targetHeight,Bitmap.Config.ARGB_8888);
 
         Canvas canvas = new Canvas(targetBitmap);
         Path path = new Path();
@@ -96,7 +100,7 @@ public class uitls {
         canvas.drawBitmap(sourceBitmap,
                 new Rect(0, 0, sourceBitmap.getWidth(),
                         sourceBitmap.getHeight()),
-                new Rect(0, 0, targetWidth, targetHeight), null);
+                new Rect(0, 0, targetWidth, targetHeight), null);}
         return targetBitmap;
     }
 
