@@ -59,12 +59,12 @@
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:id="@+id/taskesButton"
-            android:src="@drawable/bt_icone_taskes"
+            android:id="@+id/admin_message"
+            android:src="@drawable/bt_icone_admin_messages"
             android:layout_row="0"
             android:layout_column="0"
             android:backgroundTintMode="screen"
-            android:onClick="taskesButtonClick"
+            android:onClick="messageBtClick"
             android:scaleType="fitCenter"
 
             />
@@ -72,8 +72,8 @@
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:id="@+id/imageButton2"
-            android:src="@drawable/bt_icone_reports"
+            android:id="@+id/finale_mark"
+            android:src="@drawable/bt_icone_final_mark"
             android:layout_row="0"
             android:layout_column="1"
             android:onClick="reportsBtClick"
@@ -84,7 +84,7 @@
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:id="@+id/imageButton3"
+            android:id="@+id/evaloation"
             android:src="@drawable/bt_icone_evaloation"
             android:layout_row="0"
             android:layout_column="2"
@@ -96,19 +96,7 @@
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="120dp"
-            android:id="@+id/imageButton4"
-            android:src="@drawable/bt_icone_messages"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:onClick="messageBtClick"
-
-            android:backgroundTintMode="screen"
-            android:scaleType="fitCenter" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:id="@+id/imageButton6"
+            android:id="@+id/ads"
             android:src="@drawable/bt_icone_meetings"
             android:backgroundTintMode="screen"
             android:onClick="adsBtClick"
