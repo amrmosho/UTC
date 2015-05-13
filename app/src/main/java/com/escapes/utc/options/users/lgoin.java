@@ -1,9 +1,8 @@
-package com.escapes.utc.users;
+package com.escapes.utc.options.users;
 
 import android.content.Intent;
 import android.os.StrictMode;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 

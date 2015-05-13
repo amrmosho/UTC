@@ -1,4 +1,4 @@
-package com.escapes.utc.users.student;
+package com.escapes.utc.options.users.student;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import android.view.MenuItem;
 import com.escapes.utc.R;
 import com.escapes.utc.home;
 import com.escapes.utc.options.user;
-import com.escapes.utc.users.lgoin;
-import com.escapes.utc.users.student.Fragments.*;
-import com.escapes.utc.users.superHome;
-import com.escapes.utc.users.tSuperHome;
+import com.escapes.utc.options.users.lgoin;
+import com.escapes.utc.options.users.student.Fragments.*;
+import com.escapes.utc.options.users.superHome;
+import com.escapes.utc.options.users.tSuperHome;
 
 public class mytaskes extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -112,15 +112,13 @@ public class mytaskes extends ActionBarActivity
                     } else {
 
                         switch (show_status) {
-
-
                             case "adminMessages":
                                 position = 0;
                                 break;
                             case "finaleMarks":
                                 position = 1;
                                 break;
-                            case "Evaloation":
+                            case "evaloation":
                                 position = 2;
                                 break;
 
@@ -132,20 +130,13 @@ public class mytaskes extends ActionBarActivity
 
                     }
                 }
-
-
             getIntent().removeExtra("showStatus");
             show_status = "";
 
         }
 
-
         if (user.data.get("logintype").equalsIgnoreCase("student")) {
-
-
-
             switch (position) {
-
             case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
@@ -178,8 +169,6 @@ public class mytaskes extends ActionBarActivity
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, meetingsFragment.newInstance(position + 1))
                         .commit();
-
-
                 if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
                     Intent i = new Intent(mytaskes.this, home.class);
@@ -204,17 +193,9 @@ public class mytaskes extends ActionBarActivity
                 startActivity(i);
                 break;
         }
-
-
-
-
         } else {
             if (user.data.get("group").equalsIgnoreCase("2")) {
-
-
-
                 switch (position) {
-
                     case 0:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
@@ -247,13 +228,9 @@ public class mytaskes extends ActionBarActivity
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, meetingsFragment.newInstance(position + 1))
                                 .commit();
-
-
                         if (user.data.get("logintype").equalsIgnoreCase("student")) {
-
                             Intent i = new Intent(mytaskes.this, home.class);
                             startActivity(i);
-
                         } else {
                             if (user.data.get("group").equalsIgnoreCase("2")) {
 
@@ -277,24 +254,17 @@ public class mytaskes extends ActionBarActivity
 
             } else {
 
-/*
 
-
- "admin messages",
-                        "finale marks",
-                        "Evaloation",
-                        "ADS",
- */
                 switch (position) {
 
                     case 0:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, evaloationFragment.newInstance(position + 1)).commit();
+                                .replace(R.id.container, adminMessagesFragment.newInstance(position + 1)).commit();
                         break;
 
                     case 1:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, finaleReport.newInstance(position + 1))
+                                .replace(R.id.container, finaleMark.newInstance(position + 1))
                                 .commit();
                         break;
                     case 2:
@@ -309,7 +279,7 @@ public class mytaskes extends ActionBarActivity
                                 .commit();
                         break;
 
-                    case 5:
+                    case 4:
 
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, reportFragment.newInstance(position + 1))
@@ -334,7 +304,7 @@ public class mytaskes extends ActionBarActivity
                         }
 
                         break;
-                    case 6:
+                    case 5:
                         Intent i = new Intent(mytaskes.this, lgoin.class);
                         user.allDataClear();
                         startActivity(i);
@@ -403,6 +373,18 @@ public class mytaskes extends ActionBarActivity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+
+
+
+
+    void UpdateTitle(String title) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);
+    }
+
+
 
 
     @Override

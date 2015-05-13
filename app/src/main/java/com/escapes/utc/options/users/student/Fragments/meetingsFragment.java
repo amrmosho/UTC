@@ -1,11 +1,10 @@
-package com.escapes.utc.users.student.Fragments;
+package com.escapes.utc.options.users.student.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,35 +27,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by empcl_000 on 04/05/2015.
+ * Created by empcl_000 on 03/05/2015.
  */
 
 
+interface DialogClickListener {
+    public void onYesClick();
 
-    public  class reportFragment extends Fragment implements DialogClickListener {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static reportFragment newInstance(int sectionNumber) {
-            reportFragment fragment = new reportFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public reportFragment() {
-        }
+    public void onNoClick();
+}
 
 
+public class meetingsFragment extends Fragment implements DialogClickListener {
 
 
+    ///////////////////////////////////
+    private static final String ARG_SECTION_NUMBER = "section_number";
+
+    public static meetingsFragment newInstance(int sectionNumber) {
+        meetingsFragment fragment = new meetingsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
+    public meetingsFragment() {
+    }
+///////////////////////////////////////////
 
 
+//c
 
-    String me = "task_requests";
+    String me = "task_meetings";
 
     @Override
     public void onYesClick() {
@@ -73,48 +77,35 @@ import java.util.Map;
     ListView lw;
     String tid = "";
     LayoutInflater inf;
-    ListView mlw;
 
     void updateList() {
-        user.getData(me, "task_id='" + tid + "'");
 
+     //   if (user.meetingsList.size()==0){
+            user.getData(me, "task_id='" + tid + "'");
 
-        ArrayList<ListItem> listData = u.getListData(user.reportsList);
+       // }
+        ArrayList<ListItem> listData = u.getListData(user.meetingsList);
         lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
 
     }
 
-
-
-
-    void marksUpdateList() {
-        user.getData("marks", "task_id='" + tid + "'");
-        ArrayList<ListItem> listData = u.getListData(user.marksList,"report_id","dec","id");
-        mlw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
-
-    }
 //c
 
 
-
-
-
-
-
-
     @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
 
         inf = inflater;
-        View rootView = inf.inflate(R.layout.fragment_student_task_reports, container, false);
+        View rootView = inf.inflate(R.layout.fragment_student_task_meetings, container, false);
         tid = user.act_taske;
 
 
         //////Bar Actions
 
-/*
-        ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.r_addbt);
+
+        ImageButton t_addbt = (ImageButton) rootView.findViewById(R.id.g_addbt);
         t_addbt.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -123,13 +114,13 @@ import java.util.Map;
 
                         DialogFragment newFragment = addFragment.newInstance();
 
-                        newFragment.setTargetFragment(reportFragment.this, 0);
+                        newFragment.setTargetFragment(meetingsFragment.this, 0);
 
                         newFragment.show(getFragmentManager(), "dialog");
                     }
                 }
         );
-        ImageButton t_editbt = (ImageButton) rootView.findViewById(R.id.r_editbt);
+        ImageButton t_editbt = (ImageButton) rootView.findViewById(R.id.g_editbt);
 
 
         t_editbt.setOnClickListener(
@@ -140,7 +131,7 @@ import java.util.Map;
 
                         DialogFragment eFragment = editFragment.newInstance();
 
-                        eFragment.setTargetFragment(reportFragment.this, 0);
+                        eFragment.setTargetFragment(meetingsFragment.this, 0);
 
                         eFragment.show(getFragmentManager(), "dialog");
 
@@ -149,7 +140,7 @@ import java.util.Map;
         );
 
 
-        ImageButton t_delbt = (ImageButton) rootView.findViewById(R.id.r_delbt);
+        ImageButton t_delbt = (ImageButton) rootView.findViewById(R.id.g_delbt);
 
         t_delbt.setOnClickListener(
                 new View.OnClickListener() {
@@ -167,7 +158,7 @@ import java.util.Map;
                                         //  Toast.makeText(inf.getContext(), "Yaay", Toast.LENGTH_SHORT).show();
 
 
-                                        user.set_delete(me, "id='" + user.act_report + "'");
+                                        user.set_delete(me, "id='" + user.act_meetings + "'");
                                         updateList();
                                     }
                                 })
@@ -177,21 +168,21 @@ import java.util.Map;
                     }
                 }
         );
-*/
+
 
         //////BarActions
 
         //////ListViwe
 
 
-        lw = (ListView) rootView.findViewById(R.id.rlist);
+        lw = (ListView) rootView.findViewById(R.id.glist);
 
 
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                user.act_report = user.reportsList.get(position).get("id");
+                user.act_meetings = user.meetingsList.get(position).get("id");
 
                 view.setSelected(true);
 
@@ -202,57 +193,28 @@ import java.util.Map;
 
         updateList();
 
-          mlw = (ListView) rootView.findViewById(R.id.marksList);
-
-marksUpdateList();
-        mlw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-              user.act_mark = user.marksList.get(position).get("id");
-
-                view.setSelected(true);
-
-
-            }
-        });
-
-
-
-
-
-
         //////ListViwe
 
 
-        TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_r);
+        TabHost th = (TabHost) rootView.findViewById(R.id.student_taske_g);
         th.setup();
         TabHost.TabSpec tc = th.newTabSpec("Taske");
         tc.setIndicator("Taske");
-        tc.setContent(R.id.student_r_tab_task);
-        th.addTab(tc);
-
-
-        tc = th.newTabSpec("tab2");
-        tc.setIndicator("Reports");
-        tc.setContent(R.id.student_r_tab_data);
+        tc.setContent(R.id.student_g_tab_task);
         th.addTab(tc);
 
 
         tc = th.newTabSpec("tab3");
-        tc.setIndicator("Marks");
-        tc.setContent(R.id.student_r_tab_marks);
+        tc.setIndicator("Meetings");
+        tc.setContent(R.id.student_g_tab_data);
         th.addTab(tc);
 
 
-//marksList
-
-
-        TextView todo_tTitle = (TextView) rootView.findViewById(R.id.r_tTitle);
-        TextView todo_tStatus = (TextView) rootView.findViewById(R.id.r_tStatus);
-        TextView todo_tStartData = (TextView) rootView.findViewById(R.id.r_tStartData);
-        TextView todo_tEndData = (TextView) rootView.findViewById(R.id.r_tEndData);
-        TextView todo_tDes = (TextView) rootView.findViewById(R.id.r_tDes);
+        TextView todo_tTitle = (TextView) rootView.findViewById(R.id.g_tTitle);
+        TextView todo_tStatus = (TextView) rootView.findViewById(R.id.g_tStatus);
+        TextView todo_tStartData = (TextView) rootView.findViewById(R.id.g_tStartData);
+        TextView todo_tEndData = (TextView) rootView.findViewById(R.id.g_tEndData);
+        TextView todo_tDes = (TextView) rootView.findViewById(R.id.g_tDes);
 
 
         Map m = user.getTaskByid(tid);
@@ -268,11 +230,13 @@ marksUpdateList();
     }
 
 
-   /*
+    /**
+     * TabListener for messages
+     */
     public static class addFragment extends DialogFragment {
 
 
-        String me = "task_requests";
+        String me = "task_meetings";
 
 
         @Override
@@ -293,7 +257,7 @@ marksUpdateList();
                                  Bundle savedInstanceState) {
 
 
-            getDialog().setTitle("Add New [Report]");
+            getDialog().setTitle("Add New [Meetings]");
 
 
             try {
@@ -303,22 +267,29 @@ marksUpdateList();
             }
 
 
-            final View v = inflater.inflate(R.layout.activity_reports_ope, container, false);
+            final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
 
-            final EditText t_config_title = (EditText) v.findViewById(R.id.r_config_title);
-            final Button t_config_date = (Button) v.findViewById(R.id.r_config_file);
-            final EditText t_config_data = (EditText) v.findViewById(R.id.r_config_dec);
-            final Button r_config_send = (Button) v.findViewById(R.id.r_config_send);
-            r_config_send.setText("Save");
+            final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
+            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
+            final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
+            final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
+            t_config_send.setText("Save");
 
 
-            r_config_send.setOnClickListener(new View.OnClickListener() {
+            t_config_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
 
-                  /*  m.put("title", t_config_title.getText().toString());
-                    m.put("file", t_config_date.getText().toString());
+
+                    m.put("user_type", user.data.get("logintype"));
+                    m.put("users_id", user.data.get("id"));
+                    m.put("task_id", user.act_taske);
+
+
+
+                    m.put("title", t_config_title.getText().toString());
+                    m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
 
                     user.set_insert(me, m);
@@ -337,7 +308,7 @@ marksUpdateList();
     public static class editFragment extends DialogFragment {
 
 
-        String me = "task_requests";
+        String me = "task_meetings";
 
         static editFragment newInstance() {
             return new editFragment();
@@ -350,7 +321,7 @@ marksUpdateList();
                                  Bundle savedInstanceState) {
 
 
-            getDialog().setTitle("Edit  [Report]");
+            getDialog().setTitle("Edit  [Meetings]");
 
 
             try {
@@ -360,26 +331,26 @@ marksUpdateList();
             }
 
 
-            final View v = inflater.inflate(R.layout.activity_reports_ope, container, false);
+            final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
 
-            final EditText t_config_title = (EditText) v.findViewById(R.id.r_config_title);
-            final Button t_config_date = (Button) v.findViewById(R.id.r_config_file);
-            final EditText t_config_data = (EditText) v.findViewById(R.id.r_config_dec);
-            final Button r_config_send = (Button) v.findViewById(R.id.r_config_send);
+            final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
+            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
+            final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
+            final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
 
 
-            Map<String, String> edata = user.getDataByID(user.act_report, me);
+            Map<String, String> edata = user.getDataByID(user.act_meetings, me);
 
 
             t_config_title.setText(edata.get("title"));
-         //   t_config_date.setText(edata.get("date"));
+            t_config_date.setText(edata.get("date"));
             t_config_data.setText(edata.get("dec"));
 
 
-            r_config_send.setText("Update");
+            t_config_send.setText("Update");
 
 
-            r_config_send.setOnClickListener(new View.OnClickListener() {
+            t_config_send.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Map<String, String> m = new HashMap<String, String>();
@@ -387,7 +358,7 @@ marksUpdateList();
                     m.put("title", t_config_title.getText().toString());
                     m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
-                    user.set_update(me, m, "id='" + user.act_report + "'");
+                    user.set_update(me, m, "id='" + user.act_meetings + "'");
                     getDialog().dismiss();
                     callback.onYesClick();
 
@@ -399,7 +370,7 @@ marksUpdateList();
 
 
         }
-    }*/
+    }
 
 
 }

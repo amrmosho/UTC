@@ -1,4 +1,4 @@
-package com.escapes.utc.users.student;
+package com.escapes.utc.options.users.student;
 
 import java.util.Locale;
 
@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.escapes.utc.R;
 

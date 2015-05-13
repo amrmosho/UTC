@@ -1,10 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.escapes.utc.users.student.strudentTaskMain">
-
-    <!-- TODO: Update blank fragment layout -->
-
+    tools:context="com.escapes.utc.options.users.student.strudentTaskMain">
     <TabHost
         android:layout_width="fill_parent"
         android:layout_height="399dp"
@@ -42,7 +39,7 @@
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:id="@+id/imageView2"
-                            android:src="@drawable/ic_launcher"
+                            android:src="@drawable/no_photo"
                             android:layout_weight="0.12"
                             android:backgroundTint="#ccc"
                             android:background="#ccc" />

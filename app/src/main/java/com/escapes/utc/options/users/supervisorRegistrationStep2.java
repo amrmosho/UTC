@@ -1,31 +1,29 @@
-package com.escapes.utc.users;
+package com.escapes.utc.options.users;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-
 import android.net.Uri;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.escapes.utc.R;
 import com.escapes.utc.libs.serverOperations;
-import com.escapes.utc.libs.uitls;
-
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.os.StrictMode;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
+public class supervisorRegistrationStep2 extends ActionBarActivity {
 
-public class studentRegistrationStep2 extends ActionBarActivity {
 
 
     public static final int LOAD_IMAGE_RESULTS = 1;
@@ -39,19 +37,21 @@ public class studentRegistrationStep2 extends ActionBarActivity {
     String group = "";
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_registration_step2);
+        setContentView(R.layout.activity_supervisor_registration_step2);
+
+
+
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
-
-
 
 
         name = getIntent().getExtras().getString("name");
@@ -61,23 +61,16 @@ public class studentRegistrationStep2 extends ActionBarActivity {
         username = getIntent().getExtras().getString("username");
         group = getIntent().getExtras().getString("username");
 
+/////
 
 
+        Button bt_save = (Button) findViewById(R.id.bt_supervisor_save);
 
-
-
-        image = (ImageView) findViewById(R.id.img_sudent_image);
-
-
-        Button bt_save = (Button) findViewById(R.id.bt_sudent_save);
-
+        image = (ImageView) findViewById(R.id.img_supervisor_image);
 
         Button bt_getImage = (Button) findViewById(R.id.bt_student_getimage);
 
         Button bt_home = (Button) findViewById(R.id.bt_student_home);
-
-
-
 
         bt_getImage.setOnClickListener(
                 new Button.OnClickListener() {
@@ -92,15 +85,11 @@ public class studentRegistrationStep2 extends ActionBarActivity {
 
         );
 
-
-
-
-
         bt_home.setOnClickListener(
                 new Button.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(studentRegistrationStep2.this, lgoin.class);
+                        Intent i = new Intent(supervisorRegistrationStep2.this, lgoin.class);
                         startActivity(i);
                     }
                 }
@@ -120,14 +109,14 @@ public class studentRegistrationStep2 extends ActionBarActivity {
     }
 
 
+
+
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
         super.onActivityResult(requestCode, resultCode, data);
-
-
-
 
         if (requestCode == LOAD_IMAGE_RESULTS && resultCode == RESULT_OK && data != null) {
             Uri pickedImage = data.getData();
@@ -155,18 +144,23 @@ public class studentRegistrationStep2 extends ActionBarActivity {
         nameValuePairs.add(new BasicNameValuePair("username", username));
         nameValuePairs.add(new BasicNameValuePair("group", group));
         nameValuePairs.add(new BasicNameValuePair("status", "savestudent"));
-
-
-
         serverOperations.sendToServer(nameValuePairs);
         Toast t = Toast.makeText(this, "Your account has been created successfully ", Toast.LENGTH_SHORT);
         t.show();
     }
 
+
+
+
+
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_student_registration_step2, menu);
+        getMenuInflater().inflate(R.menu.menu_supervisor_registration_step2, menu);
         return true;
     }
 

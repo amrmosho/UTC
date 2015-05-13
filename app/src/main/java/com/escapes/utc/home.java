@@ -1,16 +1,10 @@
 package com.escapes.utc;
 
-import android.app.FragmentTransaction;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,9 +22,8 @@ import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
-import com.escapes.utc.users.lgoin;
-import com.escapes.utc.users.student.Fragments.messagesFragment;
-import com.escapes.utc.users.student.mytaskes;
+import com.escapes.utc.options.users.lgoin;
+import com.escapes.utc.options.users.student.mytaskes;
 
 
 import java.util.ArrayList;
@@ -153,10 +146,10 @@ public class home extends ActionBarActivity   {
             String w;
             if (user.taskesList.size() == 0) {
 
-                if (user.data.get("logintype").equalsIgnoreCase("student")) {
+                if (!user.data.get("logintype").equalsIgnoreCase("student")) {
                     w = "supervisor_id='" + user.data.get("id") + "'";
                 } else {
-                    w = "(users_group_id='" + user.data.get("group") + "') and (status=3 or status=5 or status=6)";
+                    w = "(users_group_id='" + user.data.get("group") + "') ";
                 }
                 user.getData(me, w);
             }

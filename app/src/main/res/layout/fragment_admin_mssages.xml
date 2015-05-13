@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.escapes.utc.options.users.student.strudentTaskMain">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/student_m_tab_data"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/bg_key"
+            android:id="@+id/amlist" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        style="@style/bar"
+        android:layout_gravity="left|bottom">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="edit"
+            android:id="@+id/am_editbt"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/am_addbt"
+            android:layout_toEndOf="@+id/am_addbt"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:src="@drawable/edit_icone"
+            android:scaleType="fitCenter"
+            style="@style/barbt" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add"
+            android:id="@+id/am_addbt"
+            android:onClick="t_addbt_click"
+            android:layout_gravity="left|center_vertical"
+            android:layout_alignBaseline="@+id/am_delbt"
+            android:layout_alignBottom="@+id/am_delbt"
+            android:layout_toRightOf="@+id/am_delbt"
+            android:layout_toEndOf="@+id/am_delbt"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:src="@drawable/add_icone"
+            android:scaleType="fitCenter"
+            style="@style/barbt" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delelet"
+            android:id="@+id/am_delbt"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/delete_icone"
+            android:scaleType="fitCenter"
+            android:tintMode="add"
+            android:nestedScrollingEnabled="false"
+            style="@style/barbt" />
+
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,4 +1,4 @@
-package com.escapes.utc.users;
+package com.escapes.utc.options.users;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.escapes.utc.libs.uitls;
 import com.escapes.utc.options.CustomListAdapter;
 import com.escapes.utc.options.ListItem;
 import com.escapes.utc.options.user;
-import com.escapes.utc.users.student.mytaskes;
+import com.escapes.utc.options.users.student.mytaskes;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class superHome extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_home);
 
-        UpdateTitle("Supervisor Home");
+        UpdateTitle("  Supervisor Home");
 
         TextView in = (TextView) findViewById(R.id.super_info);
 
@@ -73,7 +73,6 @@ public class superHome extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -110,13 +109,19 @@ public class superHome extends ActionBarActivity {
 
     public void marksBtClick(View view) {
 
-        DialogFragment newFragment = taskes_list.newInstance("marks");
-        newFragment.show(getSupportFragmentManager(), "dialog");
+
+        Intent i = new Intent(superHome.this,mytaskes.class);
+        i.putExtra("showStatus", "finaleMarks");
+        startActivity(i);
+
     }
 
     public void messageBtClick(View view) {
-        DialogFragment newFragment = taskes_list.newInstance("messages");
-        newFragment.show(getSupportFragmentManager(), "dialog");
+
+
+        Intent i = new Intent(superHome.this,mytaskes.class);
+        i.putExtra("showStatus", "adminMessages");
+        startActivity(i);
 
     }
 

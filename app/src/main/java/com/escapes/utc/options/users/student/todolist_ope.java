@@ -1,4 +1,4 @@
-package com.escapes.utc.users.student;
+package com.escapes.utc.options.users.student;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

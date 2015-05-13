@@ -21,6 +21,7 @@
     <style name="MyActionBar"
         parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+        android:icon="@drawable/ic_action_camera"
 
         <!-- Support library compatibility -->
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>

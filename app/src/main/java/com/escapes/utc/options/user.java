@@ -1,11 +1,6 @@
 package com.escapes.utc.options;
 
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.escapes.utc.libs.serverOperations;
-import com.escapes.utc.users.student.mytaskes;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -32,6 +27,10 @@ public class user {
     public static List<Map<String, String>> marksList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> studentesList = new ArrayList<Map<String, String>>();
     public static List<Map<String, String>> finale_reportList = new ArrayList<Map<String, String>>();
+
+    public static List<Map<String, String>> finale_markstList = new ArrayList<Map<String, String>>();
+
+
 
 
     public static String act_student = "";
@@ -164,6 +163,11 @@ public class user {
         switch (Type) {
             case "task_messages"
                     :
+            case "admin_messages"
+                    :
+
+
+
                 r = geDataByid(id, messagesList);
                 break;
 
@@ -189,6 +193,11 @@ public class user {
                 break;
 
 
+            case "finale_marks"
+                    :
+                r = geDataByid(id,finale_markstList);
+
+                break;
 
             case "studentes"
                     :
@@ -215,6 +224,8 @@ public class user {
     public static void fillListData(String Data, String Type) {
         switch (Type) {
             case "task_messages"
+                    :
+            case "admin_messages"
                     :
 
                 messagesList = fillListData(Data);
@@ -246,6 +257,12 @@ public class user {
             case "finale_report"
                     :
                 finale_reportList = fillListData(Data);
+
+                break;
+
+            case "finale_marks"
+                    :
+                finale_markstList = fillListData(Data);
 
                 break;
 
