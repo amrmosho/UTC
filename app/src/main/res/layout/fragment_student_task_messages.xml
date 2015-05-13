@@ -103,7 +103,7 @@
                             android:layout_below="@+id/m_tEndData"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
-                            android:layout_marginTop="34dp" />
+                            android:layout_marginTop="5dp" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -177,7 +177,7 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         style="@style/bar"
-        android:layout_gravity="left|bottom">
+        android:layout_gravity="center_horizontal|bottom">
 
         <ImageButton
             android:layout_width="wrap_content"

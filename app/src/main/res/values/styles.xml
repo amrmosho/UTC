@@ -15,6 +15,15 @@
         <item name="background">@drawable/title_bar</item>
 
     </style>
+
+
+    <style name="button"  parent="AppBaseTheme">
+        <item name="android:background">@drawable/bt_bg</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:textSize">20sp</item>
+
+
+    </style>
     <!-- ActionBar title text -->
 
     <!-- ActionBar styles -->
@@ -161,9 +170,6 @@
         <item name="android:textStyle">bold</item>
     </style>
     <!-- You just keep adding periods to add to additional styles -->
-    <style name="button">
-        <item name="android:layout_marginTop">15dp</item>
-    </style>
 
     <style name="barbt">
 

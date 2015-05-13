@@ -29,7 +29,8 @@ public class mytaskes extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    String show_status="";
+    String show_status = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,153 +47,180 @@ public class mytaskes extends ActionBarActivity
 
 
 
+        if (getIntent().hasExtra("showStatus"))
+
+        {
+            show_status = getIntent().getStringExtra("showStatus");
+            mTitle =show_status;
+            restoreActionBar();
+        }
+
 
     }
-
-
 
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+        mTitle = "Taskes";
         if (getIntent().hasExtra("showStatus"))
 
         {
-
-
             show_status = getIntent().getStringExtra("showStatus");
-
-
-
-
             if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
+                switch (show_status) {
+                    case "Taskes":
+                        mTitle = "Taskes";
+                        position = 0;
+                        break;
+                    case "messages":
+                        mTitle = "Messages";
+                        position = 1;
+                        break;
+                    case "reports":
+                        mTitle = "Reports";
+                        position = 2;
+                        break;
+                    case "marks":
+                        mTitle = "Marks";
+                        position = 3;
+                        break;
+                    case "ads":
+                        mTitle = "ADS";
+                        position = 4;
+                        break;
+                }
+
+            } else {
+                if (user.data.get("group").equalsIgnoreCase("2")) {
+
+
                     switch (show_status) {
-                        case "Taskes":
+                        case "taskes":
                             position = 0;
                             break;
-                        case "Messages":
+                        case "studentMessages":
+                            mTitle = "student  Messages";
+
                             position = 1;
                             break;
-                        case "Reports":
+                        case "adminMessages":
+                            mTitle = "admin Messages";
                             position = 2;
                             break;
-                        case "Marks":
+                        case "marks":
+                            mTitle = "Marks";
                             position = 3;
                             break;
-                        case "ADS":
+                        case "ads":
+                            mTitle = "ADS";
+
                             position = 4;
                             break;
                     }
 
-
                 } else {
-                    if (user.data.get("group").equalsIgnoreCase("2")) {
+
+                    switch (show_status) {
+                        case "adminMessages":
+                            mTitle = "Admin Messages";
+
+                            position = 0;
+                            break;
+                        case "finaleMarks":
+                            mTitle = "Finale Marks";
 
 
+                            position = 1;
+                            break;
+                        case "evaloation":
+                            mTitle = "Evaloation";
 
-                        switch (show_status) {
-                            case "Taskes":
-                                position = 0;
-                                break;
-                            case "StudentMessages":
-                                position = 1;
-                                break;
-                            case "adminMessages":
-                                position = 2;
-                                break;
-                            case "Marks":
-                                position = 3;
-                                break;
-                            case "ads":
-                                position = 4;
-                                break;
-                        }
+                            position = 2;
+                            break;
 
-                    } else {
-
-                        switch (show_status) {
-                            case "adminMessages":
-                                position = 0;
-                                break;
-                            case "finaleMarks":
-                                position = 1;
-                                break;
-                            case "evaloation":
-                                position = 2;
-                                break;
-
-                            case "ads":
-                                position = 3;
-                                break;
-                        }
+                        case "ads":                            mTitle = "ADS";
 
 
+                            position = 3;
+                            break;
                     }
+
+
                 }
+            }
             getIntent().removeExtra("showStatus");
             show_status = "";
 
         }
 
+
+
+
         if (user.data.get("logintype").equalsIgnoreCase("student")) {
             switch (position) {
-            case 0:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
-                break;
+                case 0:
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, mainFragment.newInstance(position + 1)).commit();
 
-            case 1:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, messagesFragment.newInstance(position + 1))
-                        .commit();
-                break;
-            case 2:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, reportFragment.newInstance(position + 1))
-                        .commit();
-                break;
+                    break;
 
-            case 3:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, reportFragment.newInstance(position + 1))
-                        .commit();
-                break;
-            case 4:
+                case 1:
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, messagesFragment.newInstance(position + 1))
+                            .commit();
+                    mTitle = " Messages";
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container,  reportFragment.newInstance(position + 1))
-                        .commit();
-                break;
-            case 5:
+                    break;
+                case 2:
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, reportFragment.newInstance(position + 1))
+                            .commit();
+                    mTitle = "Reports";
+                    break;
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, meetingsFragment.newInstance(position + 1))
-                        .commit();
-                if (user.data.get("logintype").equalsIgnoreCase("student")) {
+                case 3:
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, reportFragment.newInstance(position + 1))
+                            .commit();
+                    mTitle = "Reports";
+                    break;
+                case 4:
 
-                    Intent i = new Intent(mytaskes.this, home.class);
-                    startActivity(i);
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, meetingsFragment.newInstance(position + 1))
+                            .commit();
+                    mTitle = "ADS";
+                    break;
+                case 5:
 
-                } else {
-                    if (user.data.get("group").equalsIgnoreCase("2")) {
+                    if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
-                        Intent i = new Intent(mytaskes.this,  tSuperHome.class);
+                        Intent i = new Intent(mytaskes.this, home.class);
                         startActivity(i);
+
                     } else {
+                        if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                        Intent i = new Intent(mytaskes.this, superHome.class);
-                        startActivity(i);
+                            Intent i = new Intent(mytaskes.this, tSuperHome.class);
+                            startActivity(i);
+                        } else {
+
+                            Intent i = new Intent(mytaskes.this, superHome.class);
+                            startActivity(i);
+                        }
                     }
-                }
 
-                break;
-            case 6:
-                Intent i = new Intent(mytaskes.this, lgoin.class);
-                user.allDataClear();
-                startActivity(i);
-                break;
-        }
+                    break;
+                case 6:
+                    Intent i = new Intent(mytaskes.this, lgoin.class);
+                    user.allDataClear();
+                    startActivity(i);
+                    break;
+            }
         } else {
             if (user.data.get("group").equalsIgnoreCase("2")) {
                 switch (position) {
@@ -205,36 +233,43 @@ public class mytaskes extends ActionBarActivity
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, messagesFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Messages";
+
                         break;
                     case 2:
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, messagesFragment.newInstance(position + 1))
+                                .replace(R.id.container, adminMessagesFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Messages";
+
                         break;
 
                     case 3:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, reportFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Reports";
                         break;
                     case 4:
 
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container,  evaloationFragment.newInstance(position + 1))
+                                .replace(R.id.container, evaloationFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Evaloation";
+
                         break;
                     case 5:
 
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.container, meetingsFragment.newInstance(position + 1))
-                                .commit();
+
+
+
                         if (user.data.get("logintype").equalsIgnoreCase("student")) {
                             Intent i = new Intent(mytaskes.this, home.class);
                             startActivity(i);
                         } else {
                             if (user.data.get("group").equalsIgnoreCase("2")) {
 
-                                Intent i = new Intent(mytaskes.this,  tSuperHome.class);
+                                Intent i = new Intent(mytaskes.this, tSuperHome.class);
                                 startActivity(i);
                             } else {
 
@@ -260,30 +295,33 @@ public class mytaskes extends ActionBarActivity
                     case 0:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, adminMessagesFragment.newInstance(position + 1)).commit();
+                        mTitle = "admin Messages";
                         break;
 
                     case 1:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, finaleMark.newInstance(position + 1))
                                 .commit();
+                        mTitle = "finaleMarks";
                         break;
                     case 2:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, evaloationFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Evaloation";
                         break;
 
                     case 3:
                         fragmentManager.beginTransaction()
                                 .replace(R.id.container, evaloationFragment.newInstance(position + 1))
                                 .commit();
+                        mTitle = "Evaloation";
+
                         break;
 
                     case 4:
 
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.container, reportFragment.newInstance(position + 1))
-                                .commit();
+
 
 
                         if (user.data.get("logintype").equalsIgnoreCase("student")) {
@@ -312,60 +350,14 @@ public class mytaskes extends ActionBarActivity
                 }
 
 
-
-
             }
 
 
-
-
-
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-
-    public void onSectionAttached(int number) {
-
-
-        switch (number) {
-            case 0:
-                mTitle = "Taskes";
-                break;
-            case 1:
-                mTitle = "Todolist";
-                break;
-            case 2:
-                mTitle = "Messages";
-                break;
-            case 3:
-                mTitle = "Meetings";
-                break;
-            case 4:
-                mTitle = "Reportes";
-                break;
-        }
-
-
-
 
         restoreActionBar();
     }
+
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
@@ -374,15 +366,6 @@ public class mytaskes extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
-
-
-
-    void UpdateTitle(String title) {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle(title);
-    }
 
 
 
@@ -401,9 +384,6 @@ public class mytaskes extends ActionBarActivity
     }
 
 
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -416,9 +396,8 @@ public class mytaskes extends ActionBarActivity
             return true;
         }
 
-               return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
-
 
 
 }
