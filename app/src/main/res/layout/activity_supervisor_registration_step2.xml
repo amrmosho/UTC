@@ -15,7 +15,7 @@
         android:id="@+id/bt_supervisor_save"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/img_supervisor_image"
-        android:layout_alignEnd="@+id/img_supervisor_image" />
+        android:layout_alignEnd="@+id/img_supervisor_image"   android:onClick="btSaveAction"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -34,18 +34,18 @@
 
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/bt_supervisor_save"
-        android:layout_below="@+id/bt_student_getimage" />
+        android:layout_below="@+id/bt_supervisor_getimage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="get Image"
-        android:id="@+id/bt_student_getimage"
+        android:id="@+id/bt_supervisor_getimage"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true" android:onClick="btgetImageAction" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +54,6 @@
         android:id="@+id/bt_student_home"
         android:layout_alignBottom="@+id/bt_supervisor_save"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"  android:onClick="btHomeAction"  />
 
 </RelativeLayout>

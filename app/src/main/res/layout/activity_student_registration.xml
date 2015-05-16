@@ -15,12 +15,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        style="@style/button" />
+        style="@style/button"
+        android:onClick="btSendActions"/>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:id="@+id/scrollView"
+        android:layout_above="@+id/bt_sudent_send">
 
         <LinearLayout
             android:orientation="vertical"

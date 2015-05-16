@@ -76,7 +76,8 @@
             android:layout_below="@+id/aaaaa"
             android:layout_alignRight="@+id/aaaaa"
             android:layout_alignEnd="@+id/aaaaa"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick="btloginAction"/>
 
     </LinearLayout>
 
@@ -146,7 +147,8 @@
 
             android:layout_alignLeft="@+id/bt_login_send"
             android:layout_alignStart="@+id/bt_login_send"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick="btCreateAction"/>
 
 
     </LinearLayout>

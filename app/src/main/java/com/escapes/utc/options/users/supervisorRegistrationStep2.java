@@ -67,53 +67,11 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
         age = getIntent().getExtras().getString("age");
         email = getIntent().getExtras().getString("email");
         username = getIntent().getExtras().getString("username");
-        group = getIntent().getExtras().getString("username");
-
-/////
-
-
-        Button bt_save = (Button) findViewById(R.id.bt_supervisor_save);
+        group = getIntent().getExtras().getString("group");
 
         image = (ImageView) findViewById(R.id.img_supervisor_image);
 
-        Button bt_getImage = (Button) findViewById(R.id.bt_student_getimage);
 
-        Button bt_home = (Button) findViewById(R.id.bt_student_home);
-
-        bt_getImage.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-
-                        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(i, LOAD_IMAGE_RESULTS);
-                    }
-                }
-
-        );
-
-        bt_home.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(supervisorRegistrationStep2.this, lgoin.class);
-                        startActivity(i);
-                    }
-                }
-
-        );
-
-
-        bt_save.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveNewStudent();
-
-                    }
-                }
-        );
     }
 
 
@@ -142,23 +100,6 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
     }
 
 
-    public void saveNewStudent() {
-
-        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-        nameValuePairs.add(new BasicNameValuePair("title", name));
-        nameValuePairs.add(new BasicNameValuePair("password", Passsword));
-        nameValuePairs.add(new BasicNameValuePair("age", age));
-        nameValuePairs.add(new BasicNameValuePair("email", email));
-        nameValuePairs.add(new BasicNameValuePair("username", username));
-        nameValuePairs.add(new BasicNameValuePair("group", group));
-        nameValuePairs.add(new BasicNameValuePair("status", "savestudent"));
-        serverOperations.sendToServer(nameValuePairs);
-        Toast t = Toast.makeText(this, "Your account has been created successfully ", Toast.LENGTH_SHORT);
-        t.show();
-    }
-
-
-
 
 
 
@@ -185,5 +126,33 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+    public void btHomeAction(View view) {
+        Intent i = new Intent(supervisorRegistrationStep2.this, lgoin.class);
+        startActivity(i);
+    }
+
+    public void btSaveAction(View view) {
+        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("title", name));
+        nameValuePairs.add(new BasicNameValuePair("password", Passsword.toLowerCase()));
+        nameValuePairs.add(new BasicNameValuePair("age", age));
+        nameValuePairs.add(new BasicNameValuePair("email", email));
+        nameValuePairs.add(new BasicNameValuePair("username", username.toLowerCase()));
+        nameValuePairs.add(new BasicNameValuePair("group", group));
+        nameValuePairs.add(new BasicNameValuePair("status", "savesupervisor"));
+        serverOperations.sendToServer(nameValuePairs);
+        Toast t = Toast.makeText(this, "Your account has been created successfully ", Toast.LENGTH_SHORT);
+        t.show();
+    }
+
+    public void btgetImageAction(View view) {
+        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, LOAD_IMAGE_RESULTS);
     }
 }

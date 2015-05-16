@@ -38,30 +38,9 @@ public class studentRegistration extends ActionBarActivity {
         }
         sp_group = (Spinner) findViewById(R.id.sp_sudent_groip);
         updateGroup();
-        Button bt_send = (Button) findViewById(R.id.bt_sudent_send);
-        bt_send.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        sendData( v);
-                    }    }
-        );
+
     }
-    void sendData(View v){
-        final EditText txt_name = (EditText) findViewById(R.id.txt_sudent_name);
-        final EditText txt_password = (EditText) findViewById(R.id.txt_sudent_password);
-        final EditText txt_age = (EditText) findViewById(R.id.txt_sudent_age);
-        final EditText txt_email = (EditText) findViewById(R.id.txt_sudent_email);
-        final EditText txt_username = (EditText) findViewById(R.id.txt_sudent_username);
-        Intent i = new Intent(studentRegistration.this, studentRegistrationStep2.class);
-        i.putExtra("name", txt_name.getText().toString());
-        i.putExtra("Passsword", txt_password.getText().toString());
-        i.putExtra("age", txt_age.getText().toString());
-        i.putExtra("email", txt_email.getText().toString());
-        i.putExtra("username", txt_username.getText().toString());
-        i.putExtra("group", sp_group.getSelectedItem().toString());
-        startActivity(i);
-    }
+
     void updateGroup() {
         String  ddataList= serverOperations.getData("studentes_groups", "title");
         List<String> list = new ArrayList<String>();
@@ -102,4 +81,21 @@ public class studentRegistration extends ActionBarActivity {
     }
 
 
+
+
+    public void btSendActions(View view) {
+        final EditText txt_name = (EditText) findViewById(R.id.txt_sudent_name);
+        final EditText txt_password = (EditText) findViewById(R.id.txt_sudent_password);
+        final EditText txt_age = (EditText) findViewById(R.id.txt_sudent_age);
+        final EditText txt_email = (EditText) findViewById(R.id.txt_sudent_email);
+        final EditText txt_username = (EditText) findViewById(R.id.txt_sudent_username);
+        Intent i = new Intent(studentRegistration.this, studentRegistrationStep2.class);
+        i.putExtra("name", txt_name.getText().toString());
+        i.putExtra("Passsword", txt_password.getText().toString());
+        i.putExtra("age", txt_age.getText().toString());
+        i.putExtra("email", txt_email.getText().toString());
+        i.putExtra("username", txt_username.getText().toString());
+        i.putExtra("group", sp_group.getSelectedItem().toString());
+        startActivity(i);
+    }
 }

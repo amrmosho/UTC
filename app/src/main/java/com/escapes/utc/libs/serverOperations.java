@@ -64,11 +64,8 @@ public class serverOperations {
     public static String getData(String table,String field){
 
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-
         nameValuePairs.add(new BasicNameValuePair("field", field));
         nameValuePairs.add(new BasicNameValuePair("table",table));
-
         nameValuePairs.add(new BasicNameValuePair("status", "getData"));
 
 

@@ -49,37 +49,29 @@ public class lgoin extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-
-        Button bt_login = (Button) findViewById(R.id.bt_login_send);
-        Button bt_create = (Button) findViewById(R.id.bt_lgoin_create);
-
-
-        bt_login.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        login(v);
-                    }
-                }
-
-        );
-
-        bt_create.setOnClickListener(
-                new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        create(v);
-                    }
-                }
-
-        );
-
-
     }
 
 
-    void login(View v) {
 
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lgoin, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void btloginAction(View view) {
 
         EditText txt_username = (EditText) findViewById(R.id.txt_login_uaername);
         EditText txt_password = (EditText) findViewById(R.id.txt_lgoin_password);
@@ -134,12 +126,9 @@ public class lgoin extends ActionBarActivity {
                 }
             }
         }
-
     }
 
-
-    void create(View v) {
-
+    public void btCreateAction(View view) {
         RadioButton rdo_student = (RadioButton) findViewById(R.id.rdo_lgoin_student);
         RadioButton rdo_superVisor = (RadioButton) findViewById(R.id.rdo_lgoin_SuperVisor);
 
@@ -157,22 +146,5 @@ public class lgoin extends ActionBarActivity {
             startActivity(i);
         }
 
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_lgoin, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

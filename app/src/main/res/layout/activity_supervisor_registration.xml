@@ -13,12 +13,14 @@
         android:id="@+id/bt_supervisor_send"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="btSendAction"/>
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView2" >
+        android:id="@+id/scrollView2"
+        android:layout_above="@+id/bt_supervisor_send">
 
         <LinearLayout
             android:orientation="vertical"
