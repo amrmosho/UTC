@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,7 +37,14 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
     String username = "";
     String group = "";
 
+    void UpdateTitle(String title) {
 
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);
+    }
 
 
     @Override
@@ -45,7 +53,7 @@ public class supervisorRegistrationStep2 extends ActionBarActivity {
         setContentView(R.layout.activity_supervisor_registration_step2);
 
 
-
+       UpdateTitle( "supervisor registration");
 
 
         if (android.os.Build.VERSION.SDK_INT > 9) {

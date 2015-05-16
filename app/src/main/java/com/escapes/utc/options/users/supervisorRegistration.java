@@ -2,6 +2,7 @@ package com.escapes.utc.options.users;
 
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,8 +23,18 @@ import java.util.List;
 
 public class supervisorRegistration extends ActionBarActivity {
 
+
+    void UpdateTitle(String title) {
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        UpdateTitle( "supervisor registration");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supervisor_registration);
 

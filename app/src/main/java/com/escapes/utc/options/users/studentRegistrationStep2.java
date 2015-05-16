@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,8 +26,17 @@ import android.os.StrictMode;
 public class studentRegistrationStep2 extends ActionBarActivity {
     public static final int LOAD_IMAGE_RESULTS = 1;
     ImageView image;String name = "",Passsword = "",age = "",email = "",username = "",group = "";
+
+    void UpdateTitle(String title) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setTitle(title);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        UpdateTitle("student registration ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_registration_step2);
         if (android.os.Build.VERSION.SDK_INT > 9) {
