@@ -88,14 +88,13 @@ public class mytaskes extends ActionBarActivity
                         mTitle = "Marks";
                         position = 3;
                         break;
-                    case "ads":
-                        mTitle = "ADS";
-                        position = 4;
-                        break;
+
                 }
 
             } else {
                 if (user.data.get("group").equalsIgnoreCase("2")) {
+
+
 
 
                     switch (show_status) {
@@ -115,11 +114,12 @@ public class mytaskes extends ActionBarActivity
                             mTitle = "Marks";
                             position = 3;
                             break;
-                        case "ads":
-                            mTitle = "ADS";
+                        case "evaloation":
+                            mTitle = "Evaloation";
 
                             position = 4;
                             break;
+
                     }
 
                 } else {
@@ -142,11 +142,7 @@ public class mytaskes extends ActionBarActivity
                             position = 2;
                             break;
 
-                        case "ads":                            mTitle = "ADS";
 
-
-                            position = 3;
-                            break;
                     }
 
 
@@ -188,14 +184,8 @@ public class mytaskes extends ActionBarActivity
                             .commit();
                     mTitle = "Reports";
                     break;
-                case 4:
 
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, meetingsFragment.newInstance(position + 1))
-                            .commit();
-                    mTitle = "ADS";
-                    break;
-                case 5:
+                case 4:
 
                     if (user.data.get("logintype").equalsIgnoreCase("student")) {
 
@@ -215,7 +205,7 @@ public class mytaskes extends ActionBarActivity
                     }
 
                     break;
-                case 6:
+                case 5:
                     Intent i = new Intent(mytaskes.this, lgoin.class);
                     user.allDataClear();
                     startActivity(i);
@@ -311,15 +301,9 @@ public class mytaskes extends ActionBarActivity
                         mTitle = "Evaloation";
                         break;
 
+
+
                     case 3:
-                        fragmentManager.beginTransaction()
-                                .replace(R.id.container, evaloationFragment.newInstance(position + 1))
-                                .commit();
-                        mTitle = "Evaloation";
-
-                        break;
-
-                    case 4:
 
 
 
@@ -342,7 +326,7 @@ public class mytaskes extends ActionBarActivity
                         }
 
                         break;
-                    case 5:
+                    case 4:
                         Intent i = new Intent(mytaskes.this, lgoin.class);
                         user.allDataClear();
                         startActivity(i);

@@ -93,14 +93,7 @@
             android:backgroundTintMode="screen"
             android:scaleType="fitCenter" />
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:id="@+id/ads"
-            android:src="@drawable/bt_icone_meetings"
-            android:backgroundTintMode="screen"
-            android:onClick="adsBtClick"
-            android:scaleType="fitCenter" />
+
 
         <ImageButton
             android:layout_width="100dp"

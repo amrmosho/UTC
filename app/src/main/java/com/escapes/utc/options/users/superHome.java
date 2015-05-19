@@ -125,10 +125,6 @@ public class superHome extends ActionBarActivity {
 
     }
 
-    public void adsBtClick(View view) {
-        DialogFragment newFragment = taskes_list.newInstance("ads");
-        newFragment.show(getSupportFragmentManager(), "dialog");
-    }
 
     public void evaloationBtClick(View view) {
 

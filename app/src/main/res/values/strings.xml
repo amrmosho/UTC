@@ -72,5 +72,6 @@
     <string name="title_activity_mytaskes">Taskes Area</string>
     <string name="title_activity_todolist_ope">todolist_ope</string>
     <string name="title_activity_super_home">superHome</string>
+    <string name="title_activity_newday">newday</string>
 
 </resources>

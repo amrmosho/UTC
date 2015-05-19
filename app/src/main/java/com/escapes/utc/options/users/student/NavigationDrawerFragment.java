@@ -114,8 +114,7 @@ public class NavigationDrawerFragment extends Fragment {
                     "Taskes",
                     "Messages",
                     "Reports",
-                    "Marks",
-                    "ADS"
+                    "Marks"
                     ,"Back TO Home"
                     ,"Exit"
 
@@ -132,7 +131,6 @@ public class NavigationDrawerFragment extends Fragment {
                         "admin messages",
                         "Marks",
                         "Evaloation",
-                        "ADS",
                         "Back TO Home"
                         ,"Exit"
 
@@ -145,7 +143,6 @@ public class NavigationDrawerFragment extends Fragment {
                         "admin messages",
                         "finale marks",
                         "Evaloation",
-                        "ADS",
                         "Back TO Home"
                         ,"Exit"
 

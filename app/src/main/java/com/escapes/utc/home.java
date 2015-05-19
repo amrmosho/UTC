@@ -121,10 +121,6 @@ public class home extends ActionBarActivity   {
 
     }
 
-    public void adsBtClick(View view) {
-        DialogFragment newFragment = taskes_list.newInstance("ads");
-        newFragment.show(getSupportFragmentManager(), "dialog");
-    }
 
 
     public static class taskes_list extends DialogFragment {
