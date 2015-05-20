@@ -46,11 +46,9 @@ public class todolist_ope extends ActionBarActivity {
 
     public void t_config_send_click(View view) {
         TextView t_config_title= (TextView) findViewById(R.id.t_config_title);
-        TextView t_config_date= (TextView) findViewById(R.id.t_config_date);
         TextView  t_config_data= (TextView) findViewById(R.id.t_config_data);
         Map<String,String> m= new HashMap<String,String>();
         m.put("title",(String)t_config_title.getText());
-        m.put("created",(String)t_config_date.getText());
         m.put("dec",(String)t_config_data.getText());
         user.set_insert("task_todolist",m);
     }

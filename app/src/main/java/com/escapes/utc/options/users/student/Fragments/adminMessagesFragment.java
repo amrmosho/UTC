@@ -61,7 +61,7 @@ public class adminMessagesFragment extends Fragment  implements DialogClickListe
         ArrayList<ListItem> listData = u.getListData(user.messagesList);
         lw.setAdapter(new CustomListAdapter(inf.getContext(), listData));
 
-    }
+    }//t_config_to
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -157,9 +157,17 @@ public class adminMessagesFragment extends Fragment  implements DialogClickListe
 
             final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
             final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
             final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
             final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
+
+
+
+            final EditText t_config_to = (EditText) v.findViewById(R.id.t_config_to);
+            final EditText t_config_from = (EditText) v.findViewById(R.id.t_config_from);
+            t_config_from.setText(user.data.get("title"));
+            t_config_to.setText("Admin");
+
+
 
 
 
@@ -172,7 +180,6 @@ public class adminMessagesFragment extends Fragment  implements DialogClickListe
                     m.put("user_type", user.data.get("logintype"));
                     m.put("users_id", user.data.get("id"));
                     m.put("title", t_config_title.getText().toString());
-                    m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
 
                     user.set_insert(me, m);
@@ -205,12 +212,20 @@ public class adminMessagesFragment extends Fragment  implements DialogClickListe
             }
             final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
             final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
             final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
             final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
+
+
+
+            final EditText t_config_to = (EditText) v.findViewById(R.id.t_config_to);
+            final EditText t_config_from = (EditText) v.findViewById(R.id.t_config_from);
+            t_config_from.setText(user.data.get("title"));
+            t_config_to.setText("Admin");
+
+
+
             Map<String, String> edata = user.getDataByID(user.act_message, me);
             t_config_title.setText(edata.get("title"));
-            t_config_date.setText(edata.get("date"));
             t_config_data.setText(edata.get("dec"));
             t_config_send.setText("Update");
             t_config_send.setOnClickListener(new View.OnClickListener() {
@@ -220,7 +235,6 @@ public class adminMessagesFragment extends Fragment  implements DialogClickListe
 
 
                     m.put("title", t_config_title.getText().toString());
-                    m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
                     user.set_update(me, m, "id='" + user.act_message + "'");
                     getDialog().dismiss();

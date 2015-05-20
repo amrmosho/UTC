@@ -195,8 +195,15 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
             }
 
             final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
+
+
+
+            final EditText t_config_to = (EditText) v.findViewById(R.id.t_config_to);
+            final EditText t_config_from = (EditText) v.findViewById(R.id.t_config_from);
+            t_config_from.setText(user.data.get("title"));
+            t_config_to.setText("Task Supervisors");
+
             final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
             final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
             final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
             t_config_send.setText("Save");
@@ -209,7 +216,6 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
                     m.put("users_id", user.data.get("id"));
                     m.put("task_id", user.act_taske);
                     m.put("title", t_config_title.getText().toString());
-                    m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
 
                     user.set_insert(me, m);
@@ -242,12 +248,22 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
             }
             final View v = inflater.inflate(R.layout.activity_todolist_ope, container, false);
             final EditText t_config_title = (EditText) v.findViewById(R.id.t_config_title);
-            final EditText t_config_date = (EditText) v.findViewById(R.id.t_config_date);
             final EditText t_config_data = (EditText) v.findViewById(R.id.t_config_data);
+
+
+
+
+            final EditText t_config_to = (EditText) v.findViewById(R.id.t_config_to);
+            final EditText t_config_from = (EditText) v.findViewById(R.id.t_config_from);
+            t_config_from.setText(user.data.get("title"));
+            t_config_to.setText("Task Supervisors");
+
+
+
+
             final Button t_config_send = (Button) v.findViewById(R.id.t_config_send);
             Map<String, String> edata = user.getDataByID(user.act_message, me);
             t_config_title.setText(edata.get("title"));
-            t_config_date.setText(edata.get("date"));
             t_config_data.setText(edata.get("dec"));
             t_config_send.setText("Update");
             t_config_send.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +273,6 @@ public class messagesFragment extends Fragment  implements DialogClickListener  
 
 
                     m.put("title", t_config_title.getText().toString());
-                    m.put("date", t_config_date.getText().toString());
                     m.put("dec", t_config_data.getText().toString());
                     user.set_update(me, m, "id='" + user.act_message + "'");
                     getDialog().dismiss();
